@@ -1,0 +1,22 @@
+.text {
+    margin-right: 10px;
+}
+
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px 20px;
+	font-size: 1rem;
+	border-radius: 0.5rem;
+	border: transparent;
+	outline: none;
+	padding: 1rem 1.5rem;
+	background: #567df4;
+	font-size: 1.2rem;
+	font-weight: 600;
+	cursor: pointer;
+	color: white;
+	box-shadow: 0 0 0 1rem transparent;	
+}
+

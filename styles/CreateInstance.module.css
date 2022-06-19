@@ -1,0 +1,17 @@
+.FormSection{
+    min-height: 80vh;
+}
+
+.container{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: min(5rem, 20%) 0 min(2rem, 20%) 0;
+}
+
+.heading {
+    font-weight: 600;
+	font-size: clamp(2rem, 4vw, 3rem);
+	margin-bottom: 1rem;
+    color:#e0e1dd;
+}
