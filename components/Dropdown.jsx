@@ -1,24 +1,31 @@
 import Select from "react-select";
 import { useState } from "react";
 
-const Dropdown = ({ options }) => {
+const Dropdown = ({ options, placeholder }) => {
     const [selectedOption, setSelectedOption] = useState(null);
 
     const customStyles = {
         option: (provided, state) => ({
             ...provided,
             color: "#e0e1dd",
-            paddingLeft: "10px"
+            fontSize: "16px",
+            height: "10%"
         }),
         container: (provided, state) => ({
             ...provided,
-            width: "15%",
-            height: "10%"
+            width: "32%",
+            marginLeft: "-3%",
+            borderRadius: "20px"
+        }),
+        valueContainer: (provided, state) => ({
+            ...provided,
+            height: "50px"
         }),
         control: (provided) => ({
             ...provided,
+            fontSize: "16px",
+            paddingLeft: "4%",
             color: "#e0e1dd",
-            paddingLeft: "24px",
             border: "1px solid transparent"
         }),
         singleValue: (provided, state) => {
@@ -31,7 +38,7 @@ const Dropdown = ({ options }) => {
             <Select
                 isSearchable={false}
                 styles={customStyles}
-                placeholder="Select image"
+                placeholder={placeholder}
                 theme={(theme) => ({
                     ...theme,
                     colors: {
@@ -40,7 +47,6 @@ const Dropdown = ({ options }) => {
                         primary25: "#4a525aff;"
                     }
                 })}
-                menuColor="red"
                 defaultValue={selectedOption}
                 onChange={setSelectedOption}
                 options={options}
