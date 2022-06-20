@@ -1,13 +1,11 @@
 import Router from "next/router";
-import styles from "../styles/Button.module.css"
+import styles from "../styles/Button.module.css";
 
-const Button = ({text,redirectPage}) => {
+const Button = ({ text, redirectPage }) => {
     return (
-        <button
-            className={styles.button}
-            onClick={() => Router.push(redirectPage)}>
+        <button className={styles.button} onClick={() => Router.push(redirectPage)}>
             <div className="text">{text}</div>
-		</button>
-    )
-}
+        </button>
+    );
+};
 export default Button;
