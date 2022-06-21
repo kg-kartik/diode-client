@@ -8,23 +8,22 @@ const Dropdown = ({ options, placeholder }) => {
         option: (provided, state) => ({
             ...provided,
             color: "#e0e1dd",
-            fontSize: "16px",
-            height: "10%"
+            fontSize: "14px"
         }),
         container: (provided, state) => ({
             ...provided,
-            width: "32%",
-            marginLeft: "-3%",
+            width: "38%",
+            marginLeft: "-4%",
             borderRadius: "20px"
         }),
         valueContainer: (provided, state) => ({
             ...provided,
-            height: "45px"
+            height: "40px"
         }),
         control: (provided) => ({
             ...provided,
-            fontSize: "16px",
-            paddingLeft: "4%",
+            paddingLeft: "2%",
+            fontSize: "14px",
             color: "#e0e1dd",
             border: "1px solid transparent"
         }),

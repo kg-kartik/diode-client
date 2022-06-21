@@ -1,7 +1,6 @@
 .section {
     width: 100%;
     height: 100%;
-
 }
 
 .left {
@@ -26,7 +25,6 @@
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-around;
-
 }
 
 .heading {
@@ -42,7 +40,6 @@
     flex-direction: column;
     align-items: stretch;
     gap: 20px;
-    /* border: 2px solid green; */
 }
 
 .icons {
@@ -52,9 +49,8 @@
 .iconsList {
     display: flex;
     flex-direction: row;
-    gap: 6%;
+    gap: 10%;
     flex-wrap: wrap;
-    justify-content: space-between;
 }
 
 .outerCircle {
@@ -74,7 +70,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     margin-top: 10%;
-    justify-content: space-between;
+    gap: 100px;
 }
 
 .input_container {
@@ -89,4 +85,5 @@
     margin-top: 5%;
 }
 
-.input_button {}
+.input_button {
+}
