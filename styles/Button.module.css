@@ -1,5 +1,5 @@
 .text {
-    margin-right: 10px;
+    margin-right: 12px;
 }
 
 .button {
@@ -7,19 +7,19 @@
     align-items: center;
     justify-content: space-between;
     margin: 20px 20px;
-    font-size: 1rem;
     border-radius: 0.5rem;
-    border: transparent;
+    border: 1px solid #567df4;
     outline: none;
-    padding: 1rem 1.5rem;
-    background: #567df4;
-    font-size: 1.2rem;
+    padding: 1rem 1.8rem;
+    background: transparent;
+    font-size: 1.3rem;
     font-weight: 600;
     cursor: pointer;
-    color: white;
+    color: #567df4;
     box-shadow: 0 0 0 1rem transparent;
 }
 
 .button:hover {
+    color: white;
     background-color: #6589f7;
 }

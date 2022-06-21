@@ -20,23 +20,27 @@ p {
 .input-box {
     background-color: transparent;
     width: 30%;
-    border: 1px solid white;
+    border-color: white;
     padding-left: 4%;
     border-radius: 8px;
     color: white;
     letter-spacing: 1px;
     font-size: 16px;
+    border: transparent;
+    background-color: #24272bff;
+    outline: none;
+    line-height: 0.2em;
 }
 
 .input-box:focus {
-    border-color: #fafafa;
+    border-color: transparent;
 }
 
 .button-container {
     display: flex;
     justify-content: flex-end;
     margin-right: 15%;
-    margin-top: 2%;
+    margin-top: 6%;
 }
 
 .label {

@@ -6,7 +6,7 @@ const Button = ({ text, redirectPage }) => {
     return (
         <button className={styles.button} onClick={() => Router.push(redirectPage)}>
             <div className="text">{text}</div>
-            <FaLongArrowAltRight className="arrow" size={22} />
+            <FaLongArrowAltRight className="arrow" size={24} />
         </button>
     );
 };

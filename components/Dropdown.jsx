@@ -19,7 +19,7 @@ const Dropdown = ({ options, placeholder }) => {
         }),
         valueContainer: (provided, state) => ({
             ...provided,
-            height: "50px"
+            height: "45px"
         }),
         control: (provided) => ({
             ...provided,

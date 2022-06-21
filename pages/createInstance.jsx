@@ -27,10 +27,7 @@ const CreateInstance = () => {
                     <Fade cascade triggerOnce>
                         <h2 className={styles.heading}>Create VM Instance</h2>
                         <p className="subheading">
-                            &Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo minima
-                            ullam dolorum, perferendis harum tenetur facilis et voluptas repellat
-                            maiores natus dicta quasi odit voluptatibus architecto eos fugit
-                            molestiae eveniet.
+                            Start creating your own instance in few clicks.
                         </p>
                         <div className={styles.formContainer}>
                             <div className={styles.form}>
@@ -48,7 +45,7 @@ const CreateInstance = () => {
                 </div>
             </div>
             <div className="button-container">
-                <Button className="next" text="Next Page" redirectPage={"/lol"} />
+                <Button className="next" text="Next" redirectPage={"/lol"} />
             </div>
         </div>
     );
