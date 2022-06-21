@@ -1,6 +1,7 @@
 .section {
     width: 100%;
     height: 100%;
+
 }
 
 .container {
@@ -8,11 +9,9 @@
     margin-top: 8%;
     flex-wrap: wrap;
     flex-direction: row;
-    justify-content: space-around;
-}
-
-.left {
-    margin-left: 5%;
+    justify-content: center;
+    width: 100%;
+    /* border: 1px solid green; */
 }
 
 .heading {
@@ -23,8 +22,10 @@
 }
 
 .repoContainer {
+    min-width: 480px;
     display: flex;
     flex-direction: column;
+    align-items: stretch;
     gap: 20px;
     /* border: 2px solid green; */
 }
@@ -32,9 +33,9 @@
 .icons {
     display: flex;
     flex-direction: row;
-    gap: 10%;
+    gap: 6%;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
 }
 
 .outerCircle {
@@ -49,29 +50,24 @@
     /* opacity: 0.5; */
 }
 
-.right {
-    width: 40%;
-}
-
 .form {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     margin-top: 5%;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 .input_container {
     display: flex !important;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .environment_container {
-    text-align: center;
+    /* text-align: center; */
     margin-top: 20px;
-    border: 1px solid grey;
-    border-radius: 10px;
 }
 
 .input_button {}
