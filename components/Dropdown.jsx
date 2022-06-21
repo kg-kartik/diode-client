@@ -7,13 +7,14 @@ const Dropdown = ({ options, placeholder }) => {
     const customStyles = {
         option: (provided, state) => ({
             ...provided,
-            color: "#e0e1dd",
+            color: "#FFFFFFAF",
+            paddingLeft: "3%",
             fontSize: "14px"
         }),
         container: (provided, state) => ({
             ...provided,
-            width: "38%",
-            marginLeft: "-4%",
+            width: "48%",
+            marginLeft: "0%",
             borderRadius: "20px"
         }),
         valueContainer: (provided, state) => ({
@@ -24,7 +25,7 @@ const Dropdown = ({ options, placeholder }) => {
             ...provided,
             paddingLeft: "2%",
             fontSize: "14px",
-            color: "#e0e1dd",
+            color: "#a4a4a4",
             border: "1px solid transparent"
         }),
         singleValue: (provided, state) => {

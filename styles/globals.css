@@ -4,7 +4,7 @@ body {
         "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: #07070aff;
+    background-color: #13111c;
 }
 
 h1,
@@ -23,19 +23,20 @@ p {
     color: white;
     letter-spacing: 1px;
     font-size: 14px;
-    border: 2px solid transparent;
-    width: 35%;
+    border: 1px solid transparent;
+    width: 45%;
     height: 40px;
-    padding-left: 2%;
+    padding-left: 3%;
     background-color: #24272bff;
     outline: none;
     margin-bottom: 10px;
     margin-top: 10px;
+    margin-left: -50px;
 }
 
 .input-box:focus {
-    border: 2px solid #595b5e;
-    transition: 0.5s ease;
+    border: 1px solid #FFFFFFAF;
+    transition: 0.25s ease;
 }
 
 .button-container {
@@ -46,8 +47,8 @@ p {
 }
 
 .label {
-    font-size: 18px;
-    font-weight: 600;
+    font-size: 16px;
+    font-weight: 500;
 }
 
 .arrow {
@@ -55,5 +56,8 @@ p {
 }
 
 .subheading {
-    opacity: 0.6;
+    /* padding-top: 8px; */
+    font-size: 16px;
+    opacity: 0.75;
+    font-weight: 400;
 }

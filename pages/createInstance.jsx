@@ -3,6 +3,7 @@ import Dropdown from "../components/Dropdown";
 import React from "react";
 import Image from "next/image";
 import backImage from "../assets/page1.svg";
+import leftImage from "../assets/NewProject.svg";
 import { Bounce, Fade, Slide } from "react-awesome-reveal";
 import styles from "../styles/CreateInstance.module.css";
 import InputBox from "../components/InputBox";
@@ -11,7 +12,13 @@ const CreateInstance = () => {
     const options1 = [
         { value: "India", label: "India" },
         { value: "America", label: "America" },
-        { value: "Europe", label: "Europe" }
+        { value: "Germany", label: "Germany" },
+        { value: "Canada", label: "Canda" },
+        { value: "France", label: "France" },
+        { value: "Japan", label: "Japan" },
+        { value: "Italy", label: "Italy" },
+        { value: "Australia", label: "Australia" },
+        { value: "Poland", label: "Poland" }
     ];
 
     return (
@@ -19,26 +26,26 @@ const CreateInstance = () => {
             <div className={styles.container}>
                 <Bounce>
                     <div className={styles.left}>
-                        <Image src={backImage} alt="illus" />
+                        <Image src={leftImage} alt="illus" />
                     </div>
                 </Bounce>
 
                 <div className={styles.right}>
                     <Fade cascade triggerOnce>
-                        <h2 className={styles.heading}>Create VM Instance</h2>
+                        <h2 className={styles.heading}>New Project ✨</h2>
                         <p className="subheading">
-                            Start creating your own instance in few clicks.
+                            The first step to building something awesome 
                         </p>
                         <div className={styles.formContainer}>
                             <div className={styles.form}>
-                                <p className="label">App name</p>
+                                <p className="label">Project Name</p>
                                 {/* <Dropdown placeholder={"Select region"} options={options1} /> */}
-                                <InputBox placeholder={"Enter app name"} />
+                                <InputBox placeholder={"Something cool...?"} />
                             </div>
 
                             <div className={styles.form}>
-                                <p className="label">Select region</p>
-                                <Dropdown placeholder={"Select region"} options={options1} />
+                                <p className="label">Region</p>
+                                <Dropdown placeholder={"Somewhere Close"} options={options1} />
                             </div>
                         </div>
                     </Fade>
