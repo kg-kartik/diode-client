@@ -30,6 +30,7 @@ p {
     background-color: #24272bff;
     outline: none;
     line-height: 0.2em;
+    height: 30px;
 }
 
 .input-box:focus {
