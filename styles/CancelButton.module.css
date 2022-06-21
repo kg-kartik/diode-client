@@ -3,7 +3,7 @@
     align-items: center;
     justify-content: space-between;
     margin: 20px 20px;
-    border-radius: 0.5rem;
+    border-radius: 0.3rem;
     border: 1px solid #567df4;
     outline: none;
     background: transparent;
@@ -22,6 +22,6 @@
 }
 
 .small {
-    font-size: 1rem;
-    padding: 0.5rem 1.5rem;
+    font-size: 0.7rem;
+    padding: 0.5rem 1rem;
 }

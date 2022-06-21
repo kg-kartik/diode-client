@@ -4,14 +4,29 @@
 
 }
 
+.left {
+    margin-left: 5%;
+    margin-top: 15%;
+}
+
+.right {
+    width: 40%;
+}
+
+.heading {
+    font-weight: 600;
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    margin-bottom: 1rem;
+    color: #e0e1dd;
+}
+
 .container {
     display: flex;
-    margin-top: 8%;
+    margin-top: 4%;
     flex-wrap: wrap;
     flex-direction: row;
-    justify-content: center;
-    width: 100%;
-    /* border: 1px solid green; */
+    justify-content: space-around;
+
 }
 
 .heading {
@@ -31,6 +46,10 @@
 }
 
 .icons {
+    margin-top: 5%;
+}
+
+.iconsList {
     display: flex;
     flex-direction: row;
     gap: 6%;
@@ -54,7 +73,7 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    margin-top: 5%;
+    margin-top: 10%;
     justify-content: space-between;
 }
 
@@ -67,7 +86,7 @@
 
 .environment_container {
     /* text-align: center; */
-    margin-top: 20px;
+    margin-top: 5%;
 }
 
 .input_button {}
