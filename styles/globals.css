@@ -35,7 +35,7 @@ p {
 }
 
 .input-box:focus {
-    border: 1px solid #FFFFFFAF;
+    border: 1px solid #ffffffaf;
     transition: 0.25s ease;
 }
 
