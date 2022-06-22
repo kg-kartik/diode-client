@@ -57,7 +57,29 @@ p {
 
 .subheading {
     /* padding-top: 8px; */
-    font-size: 16px;
+    font-size: 16rem;
     opacity: 0.75;
     font-weight: 400;
+}
+
+table {
+    font-size: 14px;
+    color: white;
+    border-spacing: 60px 0;
+}
+
+
+tr:last-child,
+td:last-child {
+    border-bottom: 0;
+}
+
+th {
+    color: grey;
+    font-weight: 500;
+}
+
+th,
+td {
+    padding: 1rem;
 }
