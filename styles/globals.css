@@ -98,3 +98,27 @@ td {
 .progress-bar {
     margin-top: 6%;
 }
+
+.AboutArea {
+    margin: 2rem;
+}
+.tabs {
+    color: white;
+    border-bottom: 0.1rem solid white;
+    width: max-content;
+    display: flex;
+    gap: 10px;
+}
+.tabs__item {
+    cursor: pointer;
+    padding: 0.3rem 0.7rem;
+    border: 0.2rem solid #13111c;
+    border-radius: 1rem 1rem 0 0;
+    border-bottom: none;
+}
+
+.active {
+    border: 0.2rem solid blue;
+    border-radius: 1rem 1rem 0 0;
+    border-bottom: none;
+}
