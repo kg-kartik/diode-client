@@ -1,44 +1,41 @@
 {
-  "name": "moonlight-client",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "@tanstack/react-table": "0.0.1-alpha.0",
-    "chart.js": "^3.8.0",
-    "faker": "^6.6.6",
-    "namor": "^2.0.3",
-    "next": "12.1.6",
-    "react": "18.2.0",
-    "react-awesome-reveal": "^3.8.1",
-    "react-chartjs-2": "^4.2.0",
-    "react-dom": "18.2.0",
-    "react-icons": "^4.4.0",
-    "react-select": "^5.3.2",
-    "react-table": "^7.8.0",
-    "react-tooltip": "^4.2.21",
-    "sass": "^1.52.3",
-    "styled-components": "^5.3.5"
-  },
-  "devDependencies": {
-    "@types/node": "18.0.0",
-    "@types/react": "18.0.14",
-    "@types/react-dom": "18.0.5",
-    "eslint": "^8.18.0",
-    "eslint-config-airbnb": "^19.0.4",
-    "eslint-config-next": "12.1.6",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-jsx-a11y": "^6.5.1",
-    "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-react": "^7.30.0",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "prettier": "2.7.1",
-    "typescript": "4.7.3"
-  }
+    "name": "moonlight-client",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint"
+    },
+    "dependencies": {
+        "chart.js": "^3.8.0",
+        "next": "12.1.6",
+        "react": "18.2.0",
+        "react-awesome-reveal": "^3.8.1",
+        "react-chartjs-2": "^4.2.0",
+        "react-dom": "18.2.0",
+        "react-icons": "^4.4.0",
+        "react-select": "^5.3.2",
+        "react-step-progress-bar": "^1.0.3",
+        "react-table": "^7.8.0",
+        "react-tooltip": "^4.2.21",
+        "sass": "^1.52.3"
+    },
+    "devDependencies": {
+        "@types/node": "18.0.0",
+        "@types/react": "18.0.14",
+        "@types/react-dom": "18.0.5",
+        "eslint": "^8.18.0",
+        "eslint-config-airbnb": "^19.0.4",
+        "eslint-config-next": "12.1.6",
+        "eslint-config-prettier": "^8.5.0",
+        "eslint-plugin-import": "^2.26.0",
+        "eslint-plugin-jsx-a11y": "^6.5.1",
+        "eslint-plugin-prettier": "^4.0.0",
+        "eslint-plugin-react": "^7.30.0",
+        "eslint-plugin-react-hooks": "^4.6.0",
+        "prettier": "2.7.1",
+        "typescript": "4.7.3"
+    }
 }

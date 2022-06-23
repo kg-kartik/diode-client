@@ -57,9 +57,7 @@ p {
 
 .subheading {
     /* padding-top: 8px; */
-    font-size: 16rem;
     opacity: 0.75;
-    font-weight: 400;
 }
 
 table {
@@ -67,7 +65,6 @@ table {
     color: white;
     border-spacing: 60px 0;
 }
-
 
 tr:last-child,
 td:last-child {
@@ -82,4 +79,22 @@ th {
 th,
 td {
     padding: 1rem;
+}
+
+.progress-div {
+    margin-top: 6%;
+    background-color: rgb(233, 233, 233);
+    border-radius: 0.5rem;
+}
+
+.progress {
+    background-color: rgb(62, 122, 235);
+    height: 10px;
+    border-radius: 1rem;
+    transition: 1s ease;
+    transition-delay: 0.5s;
+}
+
+.progress-bar {
+    margin-top: 6%;
 }

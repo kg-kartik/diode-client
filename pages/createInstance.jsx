@@ -2,7 +2,6 @@ import Button from "../components/Button";
 import Dropdown from "../components/Dropdown";
 import React from "react";
 import Image from "next/image";
-import backImage from "../assets/page1.svg";
 import leftImage from "../assets/NewProject.svg";
 import { Bounce, Fade, Slide } from "react-awesome-reveal";
 import styles from "../styles/CreateInstance.module.css";
@@ -33,9 +32,7 @@ const CreateInstance = () => {
                 <div className={styles.right}>
                     <Fade cascade triggerOnce>
                         <h2 className={styles.heading}>New Project ✨</h2>
-                        <p className="subheading">
-                            The first step to building something awesome 
-                        </p>
+                        <p className="subheading">The first step to building something awesome</p>
                         <div className={styles.formContainer}>
                             <div className={styles.form}>
                                 <p className="label">Project Name</p>
