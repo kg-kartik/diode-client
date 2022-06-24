@@ -14,28 +14,6 @@ import Image from "next/image";
 
 
 
-const Environment_Input = ({ showButton, count, setCount, showCancelButton }) => {
-    return (
-        <div className={styles.input_container}>
-            <InputBox placeholder={"Enter Key Name"} />
-            <InputBox placeholder={"Enter Value"} />
-            {showButton && (
-                <Button
-                    className="next"
-                    text="Add"
-                    size="small"
-                    showArrow={false}
-                    arrow_size={12}
-                    cb={() => {
-                        setCount(count + 1);
-                    }}
-                />
-            )}
-            {showCancelButton && <CancelButton size="small" arrow_size={12} />}
-        </div>
-    );
-};
-
 const SelectRepo = () => {
     const [count, setCount] = useState(1);
     //TODO:  Set the value to be repo's unique value getting from GitHub API.

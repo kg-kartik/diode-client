@@ -37,7 +37,10 @@ const CreateInstance = () => {
                             <div className={styles.form}>
                                 <p className="label">Project Name</p>
                                 {/* <Dropdown placeholder={"Select region"} options={options1} /> */}
-                                <InputBox placeholder={"Something cool...?"} />
+                                {/* <div style={{ 'margin-left': '-50px', width: '35%' }}> */}
+
+                                <InputBox placeholder={"Something cool...?"} style={{ 'margin-left': '-50px' }} />
+                                {/* </div> */}
                             </div>
 
                             <div className={styles.form}>
@@ -47,11 +50,11 @@ const CreateInstance = () => {
                         </div>
                     </Fade>
                 </div>
-            </div>
+            </div >
             <div className="button-container">
                 <Button className="next" text="Next" redirectPage={"/lol"} />
             </div>
-        </div>
+        </div >
     );
 };
 

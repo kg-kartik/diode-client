@@ -1,5 +1,6 @@
-const InputBox = ({ placeholder }) => {
-    return <input className="input-box" placeholder={placeholder} />;
+const InputBox = ({ placeholder, style }) => {
+
+    return <input className="input-box" placeholder={placeholder} style={style} onChange />;
 };
 
 export default InputBox;
