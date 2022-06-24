@@ -1,27 +1,20 @@
-import React from 'react'
-import styled from 'styled-components'
-import { useTable, useRowSelect } from 'react-table'
+import React from "react";
+import { useTable, useRowSelect } from "react-table";
 
+const IndeterminateCheckbox = React.forwardRef(({ indeterminate, ...rest }, ref) => {
+    const defaultRef = React.useRef();
+    const resolvedRef = ref || defaultRef;
 
+    React.useEffect(() => {
+        resolvedRef.current.indeterminate = indeterminate;
+    }, [resolvedRef, indeterminate]);
 
-
-const IndeterminateCheckbox = React.forwardRef(
-    ({ indeterminate, ...rest }, ref) => {
-        const defaultRef = React.useRef()
-        const resolvedRef = ref || defaultRef
-
-        React.useEffect(() => {
-            resolvedRef.current.indeterminate = indeterminate
-        }, [resolvedRef, indeterminate])
-
-        return (
-            <>
-
-                <input type="checkbox" ref={resolvedRef} {...rest} />
-            </>
-        )
-    }
-)
+    return (
+        <>
+            <input type="checkbox" ref={resolvedRef} {...rest} />
+        </>
+    );
+});
 
 function Table({ columns, data, showCheckbox }) {
     // Use the state and functions returned from useTable to build your UI
@@ -32,23 +25,20 @@ function Table({ columns, data, showCheckbox }) {
         rows,
         prepareRow,
         selectedFlatRows,
-        state: { selectedRowIds },
+        state: { selectedRowIds }
     } = useTable(
         {
             columns,
-            data,
+            data
         },
         useRowSelect,
-        hooks => {
-            hooks.visibleColumns.push(columns => [
+        (hooks) => {
+            hooks.visibleColumns.push((columns) => [
                 // Let's make a column for selection
                 {
-                    id: 'selection',
+                    id: "selection",
                     Cell: ({ row }) => {
-                        if (
-                            rows.filter((row) => row.isSelected).length < 1 ||
-                            row.isSelected
-                        ) {
+                        if (rows.filter((row) => row.isSelected).length < 1 || row.isSelected) {
                             return (
                                 <div>
                                     <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
@@ -65,37 +55,36 @@ function Table({ columns, data, showCheckbox }) {
                                 </div>
                             );
                         }
-
-                    },
+                    }
                 },
-                ...columns,
-            ])
+                ...columns
+            ]);
         }
-    )
+    );
 
     // Render the UI for your table
     return (
         <>
             <table {...getTableProps()}>
                 <thead>
-                    {headerGroups.map(headerGroup => (
+                    {headerGroups.map((headerGroup) => (
                         <tr {...headerGroup.getHeaderGroupProps()}>
-                            {headerGroup.headers.map(column => (
-                                <th {...column.getHeaderProps()}>{column.render('Header')}</th>
+                            {headerGroup.headers.map((column) => (
+                                <th {...column.getHeaderProps()}>{column.render("Header")}</th>
                             ))}
                         </tr>
                     ))}
                 </thead>
                 <tbody {...getTableBodyProps()}>
                     {rows.slice(0, 10).map((row, i) => {
-                        prepareRow(row)
+                        prepareRow(row);
                         return (
                             <tr {...row.getRowProps()}>
-                                {row.cells.map(cell => {
-                                    return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+                                {row.cells.map((cell) => {
+                                    return <td {...cell.getCellProps()}>{cell.render("Cell")}</td>;
                                 })}
                             </tr>
-                        )
+                        );
                     })}
                 </tbody>
             </table>
@@ -114,14 +103,11 @@ function Table({ columns, data, showCheckbox }) {
                 </code>
             </pre> */}
         </>
-    )
+    );
 }
 
 function TableComponent({ columns, data, showCheckbox }) {
-
-    return (
-        <Table columns={columns} data={data} showCheckbox={showCheckbox} />
-    )
+    return <Table columns={columns} data={data} showCheckbox={showCheckbox} />;
 }
 
 export default TableComponent;

@@ -3,6 +3,7 @@ import LineChart from "../components/Chart";
 import NonSelectableTableComponent from "../components/NonSelectableTable";
 import styles from "../styles/Dashboard.module.css";
 import { tableData } from "../components/data";
+import { calculateData } from "../utils/dashboardTableDataBuilder";
 
 const Dashboard = () => {
     const labels = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July"];
@@ -89,7 +90,7 @@ const Dashboard = () => {
         labels,
         datasets: [
             {
-                label: "swap",
+                label: "cpu",
                 data: tableData.data.cpu,
                 borderColor: "rgb(255, 99, 132)",
                 backgroundColor: "rgba(255, 99, 132, 0.5)"
@@ -119,22 +120,6 @@ const Dashboard = () => {
         []
     );
 
-    const data = [
-        {
-            rowName: "CPU %",
-            max: "4%",
-            avg: "9.3%",
-            last: "2.3%"
-        },
-        {
-            rowName: "CPU %",
-            max: "4%",
-            avg: "9.3%",
-            last: "2.3%"
-        }
-    ];
-
-
     return (
         <div>
             <div className={styles.firstRow}>
@@ -142,13 +127,22 @@ const Dashboard = () => {
                     <div className={styles.chartContainer}>
                         <LineChart data={data1} />
                     </div>
-                    <NonSelectableTableComponent columns={columns} data={data} />
+
+                    <NonSelectableTableComponent
+                        data1={calculateData("swap", tableData.data.io.swap)}
+                        data2={calculateData("io", tableData.data.io.io)}
+                    />
                 </div>
                 <div className={styles.outerContainer}>
                     <div className={styles.chartContainer}>
                         <LineChart data={data2} />
                     </div>
-                    <NonSelectableTableComponent columns={columns} data={data} />
+                    <NonSelectableTableComponent
+                        data1={calculateData("in", tableData.data.netv6.in)}
+                        data2={calculateData("out", tableData.data.netv6.out)}
+                        data3={calculateData("private_in", tableData.data.netv6.private_in)}
+                        data4={calculateData("private_out", tableData.data.netv6.private_out)}
+                    />
                 </div>
             </div>
             <div className={styles.secondRow}>
@@ -156,13 +150,18 @@ const Dashboard = () => {
                     <div className={styles.chartContainer}>
                         <LineChart data={data3} />
                     </div>
-                    <NonSelectableTableComponent columns={columns} data={data} />
+                    <NonSelectableTableComponent
+                        data1={calculateData("in", tableData.data.netv4.in)}
+                        data2={calculateData("out", tableData.data.netv4.out)}
+                        data3={calculateData("private_in", tableData.data.netv4.private_in)}
+                        data4={calculateData("private_out", tableData.data.netv4.private_out)}
+                    />
                 </div>
                 <div className={styles.outerContainer}>
                     <div className={styles.chartContainer}>
                         <LineChart data={data4} />
                     </div>
-                    <NonSelectableTableComponent columns={columns} data={data} />
+                    <NonSelectableTableComponent data1={calculateData("cpu", tableData.data.cpu)} />
                 </div>
             </div>
         </div>

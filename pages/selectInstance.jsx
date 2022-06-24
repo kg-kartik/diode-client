@@ -1,13 +1,11 @@
 import { useState, useMemo } from "react";
 import TableComponent from "../components/Table";
-import data from "../constants/data"
-
-
+import data from "../constants/data";
 
 function filterData(filterValue) {
-    const result = data.filter(item => item.class === filterValue);
+    const result = data.filter((item) => item.class === filterValue);
     const final_result = [];
-    result.map(item => {
+    result.map((item) => {
         const obj = {};
         // TODO: Destructuring
         obj.monthly = item.price.monthly;
@@ -18,7 +16,7 @@ function filterData(filterValue) {
         obj.transfer = item.transfer;
         obj.network_out = item.network_out;
         final_result.push(obj);
-    })
+    });
     return final_result;
 }
 
@@ -51,8 +49,8 @@ const columns = [
     {
         Header: "Network Out",
         accessor: "network_out"
-    },
-]
+    }
+];
 const tabs = [
     {
         id: 1,
@@ -72,7 +70,9 @@ const tabs = [
     {
         id: 4,
         name: "Dedicated",
-        comp: <TableComponent columns={columns} data={filterData("dedicated")} showCheckbox={true} />
+        comp: (
+            <TableComponent columns={columns} data={filterData("dedicated")} showCheckbox={true} />
+        )
     }
 ];
 
