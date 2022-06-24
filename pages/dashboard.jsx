@@ -1,5 +1,6 @@
+import React from "react";
 import LineChart from "../components/Chart";
-import Table from "../components/Table";
+import NonSelectableTableComponent from "../components/NonSelectableTable";
 import styles from "../styles/Dashboard.module.css";
 import { tableData } from "../components/data";
 
@@ -96,6 +97,44 @@ const Dashboard = () => {
         ]
     };
 
+    const columns = React.useMemo(
+        () => [
+            {
+                Header: " ",
+                accessor: "rowName"
+            },
+            {
+                Header: "Max",
+                accessor: "max"
+            },
+            {
+                Header: "Avg",
+                accessor: "avg"
+            },
+            {
+                Header: "Last",
+                accessor: "last"
+            }
+        ],
+        []
+    );
+
+    const data = [
+        {
+            rowName: "CPU %",
+            max: "4%",
+            avg: "9.3%",
+            last: "2.3%"
+        },
+        {
+            rowName: "CPU %",
+            max: "4%",
+            avg: "9.3%",
+            last: "2.3%"
+        }
+    ];
+
+
     return (
         <div>
             <div className={styles.firstRow}>
@@ -103,13 +142,13 @@ const Dashboard = () => {
                     <div className={styles.chartContainer}>
                         <LineChart data={data1} />
                     </div>
-                    <Table />
+                    <NonSelectableTableComponent columns={columns} data={data} />
                 </div>
                 <div className={styles.outerContainer}>
                     <div className={styles.chartContainer}>
                         <LineChart data={data2} />
                     </div>
-                    <Table />
+                    <NonSelectableTableComponent columns={columns} data={data} />
                 </div>
             </div>
             <div className={styles.secondRow}>
@@ -117,13 +156,13 @@ const Dashboard = () => {
                     <div className={styles.chartContainer}>
                         <LineChart data={data3} />
                     </div>
-                    <Table />
+                    <NonSelectableTableComponent columns={columns} data={data} />
                 </div>
                 <div className={styles.outerContainer}>
                     <div className={styles.chartContainer}>
                         <LineChart data={data4} />
                     </div>
-                    <Table />
+                    <NonSelectableTableComponent columns={columns} data={data} />
                 </div>
             </div>
         </div>
