@@ -1,4 +1,5 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
+import Button from "../components/Button";
 import TableComponent from "../components/Table";
 import data from "../constants/data";
 
@@ -8,6 +9,8 @@ function filterData(filterValue) {
     result.map((item) => {
         const obj = {};
         // TODO: Destructuring
+        obj.name = item.label;
+        obj.id = item.id;
         obj.monthly = item.price.monthly;
         obj.hourly = item.price.hourly;
         obj.memory = item.memory;
@@ -22,8 +25,12 @@ function filterData(filterValue) {
 
 const columns = [
     {
-        Header: "Montly",
+        Header: "Name",
         getToggleAllRowsSelectedProps: false,
+        accessor: "name"
+    },
+    {
+        Header: "Montly",
         accessor: "monthly"
     },
     {
@@ -51,27 +58,60 @@ const columns = [
         accessor: "network_out"
     }
 ];
+
+const selectInstanceId = (id) => {
+    if (typeof window !== "undefined") {
+        localStorage.setItem("id", id);
+    }
+};
+
 const tabs = [
     {
         id: 1,
         name: "Standard",
-        comp: <TableComponent columns={columns} data={filterData("standard")} showCheckbox={true} />
+        comp: (
+            <TableComponent
+                columns={columns}
+                data={filterData("standard")}
+                showCheckbox={true}
+                cb={selectInstanceId}
+            />
+        )
     },
     {
         id: 2,
         name: "High memory",
-        comp: <TableComponent columns={columns} data={filterData("highmem")} showCheckbox={true} />
+        comp: (
+            <TableComponent
+                columns={columns}
+                data={filterData("highmem")}
+                showCheckbox={true}
+                cb={selectInstanceId}
+            />
+        )
     },
     {
         id: 3,
         name: "Nanode",
-        comp: <TableComponent columns={columns} data={filterData("nanode")} showCheckbox={true} />
+        comp: (
+            <TableComponent
+                columns={columns}
+                data={filterData("nanode")}
+                showCheckbox={true}
+                cb={selectInstanceId}
+            />
+        )
     },
     {
         id: 4,
         name: "Dedicated",
         comp: (
-            <TableComponent columns={columns} data={filterData("dedicated")} showCheckbox={true} />
+            <TableComponent
+                columns={columns}
+                data={filterData("dedicated")}
+                showCheckbox={true}
+                cb={selectInstanceId}
+            />
         )
     }
 ];
@@ -101,12 +141,24 @@ const SelectInstance = () => {
 
     const activeTab = useMemo(() => tabs.find((tab) => tab.id === activeTabId), [activeTabId]);
 
+    useEffect(() => {
+        console.log("rannnn");
+        if (typeof window !== "undefined") {
+            localStorage.clear("id");
+        }
+    }, []);
+
     return (
         <div className="AboutArea">
             <div className="container">
                 <Navigation tabs={tabs} onNavClick={setActiveTab} activeTabId={activeTabId} />
             </div>
             <Tab tab={activeTab} />
+            <Button
+                className="next"
+                text="Next"
+                // cb={() => createInstance}
+            />
         </div>
     );
 };

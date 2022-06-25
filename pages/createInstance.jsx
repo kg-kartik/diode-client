@@ -1,24 +1,47 @@
 import Button from "../components/Button";
 import Dropdown from "../components/Dropdown";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import leftImage from "../assets/NewProject.svg";
 import { Bounce, Fade, Slide } from "react-awesome-reveal";
 import styles from "../styles/CreateInstance.module.css";
 import InputBox from "../components/InputBox";
+import Axios from "axios";
+import Link from "next/link";
 
 const CreateInstance = () => {
-    const options1 = [
-        { value: "India", label: "India" },
-        { value: "America", label: "America" },
-        { value: "Germany", label: "Germany" },
-        { value: "Canada", label: "Canda" },
-        { value: "France", label: "France" },
-        { value: "Japan", label: "Japan" },
-        { value: "Italy", label: "Italy" },
-        { value: "Australia", label: "Australia" },
-        { value: "Poland", label: "Poland" }
-    ];
+    const [options, setOptions] = useState([]);
+
+    useEffect(() => {
+        Axios.post("https://876f-103-87-56-67.ngrok.io/details/all", {
+            token: "612528e31e02e0279cb3f08d5237af11a9f780a0991e1b653663b5871dcf6543"
+        })
+            .then((res) => {
+                let regions = [];
+
+                res.data.regions.map((region) => {
+                    regions.push({
+                        value: region.id,
+                        label: region.id
+                    });
+                });
+                setOptions(regions);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }, []);
+
+    const [inputValue, setInputValue] = useState("");
+    const [dropdownValue, setDropdownValue] = useState("");
+
+    const handleInputValue = (inputValue) => {
+        setInputValue(inputValue);
+    };
+
+    const handleDropdownValue = (inputValue) => {
+        setDropdownValue(inputValue);
+    };
 
     return (
         <div className={styles.section}>
@@ -37,19 +60,34 @@ const CreateInstance = () => {
                             <div className={styles.form}>
                                 <p className="label">Project Name</p>
                                 {/* <Dropdown placeholder={"Select region"} options={options1} /> */}
-                                <InputBox placeholder={"Something cool...?"} />
+                                <InputBox
+                                    value={inputValue}
+                                    placeholder={"Something cool...?"}
+                                    cb={handleInputValue}
+                                />
                             </div>
 
                             <div className={styles.form}>
                                 <p className="label">Region</p>
-                                <Dropdown placeholder={"Somewhere Close"} options={options1} />
+                                <Dropdown
+                                    value={dropdownValue}
+                                    cb={handleDropdownValue}
+                                    placeholder={"Somewhere Close"}
+                                    options={options}
+                                />
                             </div>
                         </div>
                     </Fade>
                 </div>
             </div>
             <div className="button-container">
-                <Button className="next" text="Next" redirectPage={"/lol"} />
+                <Button
+                    className="next"
+                    text="Next"
+                    cb={() => {
+                        return <Link href="/selectInstance" />;
+                    }}
+                />
             </div>
         </div>
     );
