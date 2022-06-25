@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useTable, useRowSelect } from "react-table";
 
 const IndeterminateCheckbox = React.forwardRef(({ indeterminate, ...rest }, ref) => {
@@ -11,13 +11,12 @@ const IndeterminateCheckbox = React.forwardRef(({ indeterminate, ...rest }, ref)
 
     return (
         <>
-            <input type="checkbox" ref={resolvedRef} {...rest} />
+            <input type="radio" ref={resolvedRef} {...rest} />
         </>
     );
 });
 
-function Table({ columns, data, showCheckbox }) {
-    // Use the state and functions returned from useTable to build your UI
+const TableComponent = ({ columns, data, showCheckbox, cb }) => {
     const {
         getTableProps,
         getTableBodyProps,
@@ -62,6 +61,10 @@ function Table({ columns, data, showCheckbox }) {
         }
     );
 
+    useEffect(() => {
+        cb(selectedFlatRows[0]?.original.id);
+    }, [selectedRowIds]);
+
     // Render the UI for your table
     return (
         <>
@@ -88,26 +91,8 @@ function Table({ columns, data, showCheckbox }) {
                     })}
                 </tbody>
             </table>
-            {/* <pre>
-                <code>
-                    {JSON.stringify(
-                        {
-                            selectedRowIds: selectedRowIds,
-                            'selectedFlatRows[].original': selectedFlatRows.map(
-                                d => d.original
-                            ),
-                        },
-                        null,
-                        2
-                    )}
-                </code>
-            </pre> */}
         </>
     );
-}
-
-function TableComponent({ columns, data, showCheckbox }) {
-    return <Table columns={columns} data={data} showCheckbox={showCheckbox} />;
-}
+};
 
 export default TableComponent;
