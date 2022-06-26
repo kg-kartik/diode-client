@@ -7,11 +7,10 @@ import { Bounce, Fade, Slide } from "react-awesome-reveal";
 import styles from "../styles/CreateInstance.module.css";
 import InputBox from "../components/InputBox";
 import Axios from "axios";
-import { useRouter } from "next/router";
+import Link from "next/link";
 
 const CreateInstance = () => {
     const [options, setOptions] = useState([]);
-    const router = useRouter();
 
     useEffect(() => {
         Axios.post("https://876f-103-87-56-67.ngrok.io/details/all", {
@@ -34,21 +33,9 @@ const CreateInstance = () => {
     }, []);
 
     const [inputValue, setInputValue] = useState("");
-    const [dropdownValue, setDropdownValue] = useState("");
 
     const handleInputValue = (inputValue) => {
         setInputValue(inputValue);
-    };
-
-    const handleDropdownValue = (inputValue) => {
-        setDropdownValue(inputValue);
-    };
-
-    const nextHandle = () => {
-        router.push({
-            pathname: "/selectInstance",
-            query: { name: inputValue, region: dropdownValue }
-        });
     };
 
     return (
@@ -62,11 +49,11 @@ const CreateInstance = () => {
 
                 <div className={styles.right}>
                     <Fade cascade triggerOnce>
-                        <h2 className={styles.heading}>New Project ✨</h2>
-                        <p className="subheading">The first step to building something awesome</p>
+                        <h2 className={styles.heading}>Login With Linode ✨</h2>
+                        <p className="subheading">Get your personal access token and enter here</p>
                         <div className={styles.formContainer}>
                             <div className={styles.form}>
-                                <p className="label">Project Name</p>
+                                <p className="label">Token</p>
                                 {/* <Dropdown placeholder={"Select region"} options={options1} /> */}
                                 <InputBox
                                     value={inputValue}
@@ -74,22 +61,19 @@ const CreateInstance = () => {
                                     cb={handleInputValue}
                                 />
                             </div>
-
-                            <div className={styles.form}>
-                                <p className="label">Region</p>
-                                <Dropdown
-                                    value={dropdownValue}
-                                    cb={handleDropdownValue}
-                                    placeholder={"Somewhere Close"}
-                                    options={options}
-                                />
-                            </div>
                         </div>
                     </Fade>
                 </div>
             </div>
             <div className="button-container">
-                <Button className="next" text="Next" cb={nextHandle} />
+                <Button
+                    size={"large"}
+                    showArrow={false}
+                    text="Login With Linode"
+                    cb={() => {
+                        return <Link href="/selectInstance" />;
+                    }}
+                />
             </div>
         </div>
     );

@@ -2,6 +2,7 @@ import { useState, useMemo, useEffect } from "react";
 import Button from "../components/Button";
 import TableComponent from "../components/Table";
 import data from "../constants/data";
+import { useRouter } from "next/router";
 
 function filterData(filterValue) {
     const result = data.filter((item) => item.class === filterValue);
@@ -140,17 +141,41 @@ const Navigation = (props) => {
     );
 };
 
-const SelectInstance = () => {
+const SelectInstance = (props) => {
     const [activeTabId, setActiveTab] = useState(tabs[0].id);
+    const router = useRouter();
 
     const activeTab = useMemo(() => tabs.find((tab) => tab.id === activeTabId), [activeTabId]);
 
     useEffect(() => {
-        console.log("rannnn");
         if (typeof window !== "undefined") {
             localStorage.clear("id");
         }
     }, []);
+
+    const createInstanceCall = () => {
+        Axios.post("https://876f-103-87-56-67.ngrok.io/details/all", {
+            token: "612528e31e02e0279cb3f08d5237af11a9f780a0991e1b653663b5871dcf6543",
+            instance_type: localStorage.getItem("id"),
+            region: router.query.region,
+            image: "linode/ubuntu22.04"
+        })
+            .then((res) => {
+                Axios.post("https://876f-103-87-56-67.ngrok.io/details/all", {
+                    ssh_key: res.data.ssh_key,
+                    ip_address: res.data.ip_addess
+                })
+                    .then((res) => {
+                        alert("Instance created");
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    });
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
 
     return (
         <div className="AboutArea">
@@ -167,7 +192,12 @@ const SelectInstance = () => {
             </div>
             <Tab tab={activeTab} />
             <div style={{ display: "flex", justifyContent: "center", marginTop: "80px" }}>
-                <Button size={"large"} showArrow={false} text="Create Instance" cb={() => {}} />
+                <Button
+                    size={"large"}
+                    showArrow={false}
+                    text="Create Instance"
+                    cb={createInstanceCall}
+                />
             </div>
         </div>
     );

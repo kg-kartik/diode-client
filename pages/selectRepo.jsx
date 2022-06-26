@@ -10,10 +10,12 @@ import axios from "axios";
 import { IoLogoReact, IoLogoNodejs } from "react-icons/io5";
 import { DiDjango } from "react-icons/di";
 import { SiFastapi, SiFlask, SiRedis } from "react-icons/si";
+import { useRouter } from "next/router";
 
 const SelectRepo = () => {
     const { data: session } = useSession();
     const [repos, setRepos] = useState([]);
+    const router = useRouter();
 
     useEffect(() => {
         let repoArr = [];
@@ -43,8 +45,18 @@ const SelectRepo = () => {
     }, [session]);
 
     const [selected, setSelected] = useState(false);
+    const [dropdownValue, setDropdownValue] = useState("");
 
-    // Logic: When to show Add Button.
+    const handleDropdownValue = (inputValue) => {
+        setDropdownValue(inputValue);
+    };
+
+    const nextHandle = () => {
+        router.push({
+            pathname: "/selectInstance",
+            query: { repo: dropdownValue, buildpack: selected }
+        });
+    };
 
     return (
         <div className={styles.section}>
@@ -62,7 +74,12 @@ const SelectRepo = () => {
                         <div className={styles.repoContainer}>
                             <div className={styles.form}>
                                 <p className="label">Github Repos</p>
-                                <Dropdown placeholder={"Select repo"} options={repos} />
+                                <Dropdown
+                                    placeholder={"Select repo"}
+                                    options={repos}
+                                    value={dropdownValue}
+                                    cb={handleDropdownValue}
+                                />
                             </div>
                             <div className={styles.icons}>
                                 <p className="label">Select Buildpack</p>
@@ -125,7 +142,7 @@ const SelectRepo = () => {
                             </div>
 
                             <div className="button-container">
-                                <Button className="next" text="Next" cb={() => signOut()} />
+                                <Button className="next" text="Next" cb={nextHandle()} />
                             </div>
                         </div>
                     </Fade>

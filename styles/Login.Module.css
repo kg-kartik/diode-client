@@ -1,0 +1,46 @@
+.section {
+    width: 100%;
+    height: 100%;
+}
+
+.container {
+    display: flex;
+    margin-top: 4%;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.left {
+    margin-left: 5%;
+    margin-top: 40%;
+}
+
+.heading {
+    font-weight: 700;
+    /* font-size: clamp(1.5rem, 4vw, 2rem); */
+    font-size: 40px;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 5%;
+}
+
+.right {
+    margin-top: 2%;
+    width: 40%;
+}
+
+.form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 5%;
+    gap: 20%;
+    background-color: transparent;
+}
