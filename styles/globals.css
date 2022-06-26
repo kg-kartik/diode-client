@@ -24,14 +24,13 @@ p {
     letter-spacing: 1px;
     font-size: 14px;
     border: 1px solid transparent;
-    width: 45%;
+    width: 33%;
     height: 40px;
     padding-left: 3%;
     background-color: #24272bff;
     outline: none;
     margin-bottom: 10px;
     margin-top: 10px;
-    margin-left: -50px;
 }
 
 .input-box:focus {
