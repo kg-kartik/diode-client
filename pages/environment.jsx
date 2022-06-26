@@ -2,71 +2,37 @@ import { useState, useEffect } from "react";
 import styles from "../styles/Environment.module.css";
 import { Bounce, Fade, Slide } from "react-awesome-reveal";
 import backImage from "../assets/page1.svg";
-import InputBox from "../components/InputBox";
 import Button from "../components/Button";
-import CancelButton from "../components/CancelButton";
-import Dropdown from "../components/Dropdown";
 import Image from "next/image";
-
-
-
-const Environment_Input = ({ showButton, count, setCount, showCancelButton }) => {
-    const [key, setKey] = useState("");
-    const [value, setValue] = useState("");
-    const [finalData, setFinalData] = useState([]);
-
-
-    function onClick() {
-        if (key != "" && value != "") {
-            setCount(count + 1);
-            const newData = { key, value };
-            const result = [...finalData, newData];
-            setFinalData(result);
-        }
-    }
-
-    return (
-        <div className={styles.input_container}>
-            <input className="input-box" placeholder="Enter key" value={key} onChange={(e) => setKey(e.target.value)} />
-            <input className="input-box" placeholder="Enter Value" value={value} onChange={(e) => setValue(e.target.value)} />
-            {showButton && (
-                <Button
-                    className="next"
-                    text="Add"
-                    size="small"
-                    showArrow={false}
-                    arrow_size={12}
-                    cb={onClick}
-                />
-            )}
-            {showCancelButton && <CancelButton size="small" arrow_size={12} />}
-            {finalData.map((item) => {
-                return <>
-                    <p>{item.key}</p> " "
-                    <p>{item.value}</p>
-                </>
-            })}
-
-        </div>
-
-
-    );
-};
+import { AiFillDelete } from "react-icons/ai";
+import { MdAddCircle } from "react-icons/md";
 
 const Environment = () => {
-    const [count, setCount] = useState(1);
-    //TODO:  Set the value to be repo's unique value getting from GitHub API.
-    const repos = [
-        { value: "Project 1", label: "Project 1" },
-        { value: "Project 2", label: "Project 2" },
-        { value: "Project 3", label: "Project 3" }
-    ];
+    const [fields, setFields] = useState([{ value: null }]);
 
+    const handleChangeKey = (i, event) => {
+        const values = [...fields];
+        values[i].key = event.target.value;
+        setFields(values);
+    };
 
-    // Logic: When to show Add Button.
-    const arr = [...Array(count)];
-    arr.fill(false);
-    arr[arr.length - 1] = true;
+    const handleChangeValue = (i, event) => {
+        const values = [...fields];
+        values[i].value = event.target.value;
+        setFields(values);
+    };
+
+    const handleAdd = () => {
+        const values = [...fields];
+        values.push({ value: null });
+        setFields(values);
+    };
+
+    const handleRemove = (i) => {
+        const values = [...fields];
+        values.splice(i, 1);
+        setFields(values);
+    };
 
     return (
         <div className={styles.section}>
@@ -81,23 +47,41 @@ const Environment = () => {
                     <Fade cascade triggerOnce>
                         <h2 className={styles.heading}>Set Environment Variables</h2>
                         <div className={styles.repoContainer}>
-
-
-
                             <div className={styles.environment_container}>
                                 <p className="label">Add Environment Variables</p>
-                                {
-                                    arr.map((item, index) => {
-                                        return (
-                                            <Environment_Input key={index} showButton={item} count={count} setCount={setCount} showCancelButton={!item} />
-                                        )
-                                    })
-                                }
                             </div>
+
+                            {fields.map((field, idx) => {
+                                return (
+                                    <div className={styles.input_container}>
+                                        <input
+                                            className="input-box"
+                                            placeholder="Enter key"
+                                            value={field.key}
+                                            onChange={(e) => handleChangeKey(idx, e)}
+                                        />
+                                        <input
+                                            className="input-box"
+                                            placeholder="Enter Value"
+                                            value={field.value}
+                                            onChange={(e) => handleChangeValue(idx, e)}
+                                        />
+                                        <MdAddCircle className={styles.add} onClick={handleAdd} />
+
+                                        {idx !== 0 && (
+                                            <AiFillDelete
+                                                className={styles.delete}
+                                                onClick={() => handleRemove(idx)}
+                                            />
+                                        )}
+                                    </div>
+                                );
+                            })}
+                            <></>
                         </div>
                     </Fade>
-                    <div className="button-container">
-                        <Button className="next" text="Next" redirectPage={"/lol"} />
+                    <div style={{ display: "flex", justifyContent: "center", marginTop: "80px" }}>
+                        <Button size={"large"} showArrow={false} text="Deploy App" cb={() => {}} />
                     </div>
                 </div>
             </div>

@@ -77,11 +77,25 @@
 .input_container {
     display: flex !important;
     flex-direction: row;
-    justify-content: space-between;
+    gap: 20px;
     align-items: center;
 }
 
 .environment_container {
     /* text-align: center; */
     margin-top: 5%;
+}
+
+.delete {
+    width: 35px;
+    height: 35px;
+    color: red;
+    cursor: pointer;
+}
+
+.add {
+    width: 35px;
+    height: 35px;
+    color: green;
+    cursor: pointer;
 }
