@@ -7,7 +7,7 @@
     align-items: center;
     justify-content: space-between;
     margin: 20px 30px;
-    border-radius: 0.3rem;
+    border-radius: 0.4rem;
     border: 1px solid #567df4;
     outline: none;
     background: transparent;
@@ -18,17 +18,14 @@
 }
 
 .large {
-    font-size: 1rem;
-    padding: 0.8rem 0.9rem;
-
+    font-size: 1.1rem;
+    padding: 1rem 2.5rem;
 }
 
 .small {
-    font-size: 0.7rem;
-    padding: 0.5rem 1rem;
+    font-size: 1.1rem;
+    padding: 0.8rem 1.1rem;
 }
-
-
 
 .button:hover {
     color: white;

@@ -6,7 +6,6 @@
     margin-top: 20px;
 }
 
-
 .outerContainer {
     width: 48%;
     border: 1px solid grey;
@@ -14,5 +13,5 @@
 }
 
 .chartContainer {
-    height: 200px;
+    height: 170px;
 }

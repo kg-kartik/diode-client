@@ -2,7 +2,7 @@ import Router from "next/router";
 import styles from "../styles/Button.module.css";
 import { FaLongArrowAltRight } from "react-icons/fa";
 
-const Button = ({ showArrow = true, text, redirectPage, arrow_size = 22, size = "large", cb }) => {
+const Button = ({ showArrow = true, text, redirectPage, arrow_size = 22, size, cb }) => {
     return (
         <button
             className={styles.button + " " + `${size === "large" ? styles.large : styles.small}`}

@@ -15,13 +15,13 @@ const Dropdown = ({ options, placeholder }) => {
         option: (provided, state) => ({
             ...provided,
             color: "#FFFFFFAF",
-            paddingLeft: "3%",
+            paddingLeft: "5%",
             fontSize: "14px"
         }),
         container: (provided, state) => ({
             ...provided,
-            width: "48%",
-            marginLeft: "0%",
+            width: "42%",
+            marginLeft: "8%",
             borderRadius: "20px"
         }),
         valueContainer: (provided, state) => ({

@@ -75,7 +75,7 @@ const tabs = [
                 data={filterData("standard")}
                 showCheckbox={true}
                 cb={selectInstanceId}
-                style={{ transform: 'translateY(50px)' }}
+                style={{ transform: "translateY(50px)" }}
             />
         )
     },
@@ -88,7 +88,7 @@ const tabs = [
                 data={filterData("highmem")}
                 showCheckbox={true}
                 cb={selectInstanceId}
-                style={{ transform: 'translateY(50px)' }}
+                style={{ transform: "translateY(50px)" }}
             />
         )
     },
@@ -101,7 +101,7 @@ const tabs = [
                 data={filterData("nanode")}
                 showCheckbox={true}
                 cb={selectInstanceId}
-                style={{ transform: 'translateY(50px)' }}
+                style={{ transform: "translateY(50px)" }}
             />
         )
     },
@@ -114,7 +114,7 @@ const tabs = [
                 data={filterData("dedicated")}
                 showCheckbox={true}
                 cb={selectInstanceId}
-                style={{ transform: 'translateY(50px)' }}
+                style={{ transform: "translateY(50px)" }}
             />
         )
     }
@@ -154,17 +154,20 @@ const SelectInstance = () => {
 
     return (
         <div className="AboutArea">
-            <div className="container" style={{ marginLeft: "6%" }}>
+            <h2
+                style={{
+                    marginBottom: "3%",
+                    marginLeft: "5%"
+                }}
+            >
+                Select Instance Type
+            </h2>
+            <div className="container" style={{ marginLeft: "5%" }}>
                 <Navigation tabs={tabs} onNavClick={setActiveTab} activeTabId={activeTabId} />
             </div>
             <Tab tab={activeTab} />
-            <div style={{ display: 'flex', justifyContent: "center", marginTop: '80px' }}>
-                <Button
-                    className="next"
-                    text="Next"
-                // cb={() => createInstance}
-                />
-
+            <div style={{ display: "flex", justifyContent: "center", marginTop: "80px" }}>
+                <Button size={"large"} showArrow={false} text="Create Instance" cb={() => {}} />
             </div>
         </div>
     );
