@@ -75,6 +75,7 @@ const tabs = [
                 data={filterData("standard")}
                 showCheckbox={true}
                 cb={selectInstanceId}
+                style={{ transform: 'translateY(50px)' }}
             />
         )
     },
@@ -87,6 +88,7 @@ const tabs = [
                 data={filterData("highmem")}
                 showCheckbox={true}
                 cb={selectInstanceId}
+                style={{ transform: 'translateY(50px)' }}
             />
         )
     },
@@ -99,6 +101,7 @@ const tabs = [
                 data={filterData("nanode")}
                 showCheckbox={true}
                 cb={selectInstanceId}
+                style={{ transform: 'translateY(50px)' }}
             />
         )
     },
@@ -111,6 +114,7 @@ const tabs = [
                 data={filterData("dedicated")}
                 showCheckbox={true}
                 cb={selectInstanceId}
+                style={{ transform: 'translateY(50px)' }}
             />
         )
     }
@@ -150,15 +154,18 @@ const SelectInstance = () => {
 
     return (
         <div className="AboutArea">
-            <div className="container">
+            <div className="container" style={{ marginLeft: "6%" }}>
                 <Navigation tabs={tabs} onNavClick={setActiveTab} activeTabId={activeTabId} />
             </div>
             <Tab tab={activeTab} />
-            <Button
-                className="next"
-                text="Next"
+            <div style={{ display: 'flex', justifyContent: "center", marginTop: '80px' }}>
+                <Button
+                    className="next"
+                    text="Next"
                 // cb={() => createInstance}
-            />
+                />
+
+            </div>
         </div>
     );
 };

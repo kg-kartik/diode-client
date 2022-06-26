@@ -13,28 +13,9 @@ import Dropdown from "../components/Dropdown";
 import Image from "next/image";
 import { useSession, signIn, signOut } from "next-auth/react";
 import axios from "axios";
-
-const Environment_Input = ({ showButton, count, setCount, showCancelButton }) => {
-    return (
-        <div className={styles.input_container}>
-            <InputBox placeholder={"Enter Key Name"} />
-            <InputBox placeholder={"Enter Value"} />
-            {showButton && (
-                <Button
-                    className="next"
-                    text="Add"
-                    size="small"
-                    showArrow={false}
-                    arrow_size={12}
-                    cb={() => {
-                        setCount(count + 1);
-                    }}
-                />
-            )}
-            {showCancelButton && <CancelButton size="small" arrow_size={12} />}
-        </div>
-    );
-};
+import { IoLogoReact, IoLogoNodejs } from "react-icons/io5";
+import { DiDjango } from "react-icons/di";
+import { SiFastapi, SiFlask, SiRedis } from "react-icons/si";
 
 const SelectRepo = () => {
     const { data: session } = useSession();
@@ -67,14 +48,9 @@ const SelectRepo = () => {
         }
     }, [session]);
 
-    const [count, setCount] = useState(1);
-
-    const icons = [{ src: github }, { src: docker }, { src: nodejs }, { src: google_cloud }];
+    const [selected, setSelected] = useState(false);
 
     // Logic: When to show Add Button.
-    const arr = [...Array(count)];
-    arr.fill(false);
-    arr[arr.length - 1] = true;
 
     return (
         <div className={styles.section}>
@@ -97,9 +73,61 @@ const SelectRepo = () => {
                             <div className={styles.icons}>
                                 <p className="label">Select Buildpack</p>
                                 <div className={styles.iconsList}>
-                                    {icons.map((item) => {
-                                        return <Image src={item.src} />;
-                                    })}
+                                    <div
+                                        className={styles.border}
+                                        onClick={() => {
+                                            setSelected(0);
+                                            console.log(selected);
+                                        }}
+                                        style={{ border: selected === 0 ? "1px solid grey" : "" }}
+                                    >
+                                        <IoLogoReact className={styles.react} />
+                                    </div>
+                                    <div
+                                        className={styles.border}
+                                        onClick={() => {
+                                            setSelected(1);
+                                        }}
+                                        style={{ border: selected === 1 ? "1px solid grey" : "" }}
+                                    >
+                                        <IoLogoNodejs className={styles.node} />
+                                    </div>
+                                    <div
+                                        className={styles.border}
+                                        onClick={() => {
+                                            setSelected(2);
+                                        }}
+                                        style={{ border: selected === 2 ? "1px solid grey" : "" }}
+                                    >
+                                        <DiDjango className={styles.django} />
+                                    </div>
+                                    <div
+                                        className={styles.border}
+                                        onClick={() => {
+                                            setSelected(3);
+                                        }}
+                                        style={{ border: selected === 3 ? "1px solid grey" : "" }}
+                                    >
+                                        <SiFastapi className={styles.fast} />
+                                    </div>
+                                    <div
+                                        className={styles.border}
+                                        onClick={() => {
+                                            setSelected(4);
+                                        }}
+                                        style={{ border: selected === 4 ? "1px solid grey" : "" }}
+                                    >
+                                        <SiFlask className={styles.flask} />
+                                    </div>
+                                    <div
+                                        className={styles.border}
+                                        onClick={() => {
+                                            setSelected(5);
+                                        }}
+                                        style={{ border: selected === 5 ? "1px solid grey" : "" }}
+                                    >
+                                        <SiRedis className={styles.redis} />
+                                    </div>
                                 </div>
                             </div>
 

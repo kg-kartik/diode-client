@@ -54,6 +54,66 @@
     flex-wrap: wrap;
 }
 
+.border {
+    height: 45px;
+    width: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.border:focus {
+    outline: #e0e1dd;
+}
+
+/* .border:hover {
+    border: 0.2px solid grey;
+    border-radius: 50%;
+} */
+
+
+.iconsList>*:hover {}
+
+.redis {
+    height: 35px;
+    width: 35px;
+    color: #D82C20;
+}
+
+.flask {
+    height: 35px;
+    width: 35px;
+    color: white;
+}
+
+.react {
+    height: 35px;
+    width: 35px;
+    color: #61dbfb;
+}
+
+.fast {
+    height: 35px;
+    width: 35px;
+    color: #429A8C;
+}
+
+.django {
+    height: 35px;
+    width: 35px;
+    color: #0F2D1E;
+    transform: scale(1.1);
+}
+
+.node {
+    color: #4F9640;
+    height: 35px;
+    width: 35px;
+}
+
 .outerCircle {
     display: flex;
     justify-content: center;
