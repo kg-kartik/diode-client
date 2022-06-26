@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "../styles/SelectRepo.module.css";
 import { Bounce, Fade, Slide } from "react-awesome-reveal";
 import backImage from "../assets/page1.svg";
@@ -11,8 +11,8 @@ import Button from "../components/Button";
 import CancelButton from "../components/CancelButton";
 import Dropdown from "../components/Dropdown";
 import Image from "next/image";
-
-
+import { useSession, signIn, signOut } from "next-auth/react";
+import axios from "axios";
 
 const Environment_Input = ({ showButton, count, setCount, showCancelButton }) => {
     return (
@@ -37,13 +37,37 @@ const Environment_Input = ({ showButton, count, setCount, showCancelButton }) =>
 };
 
 const SelectRepo = () => {
+    const { data: session } = useSession();
+    const [repos, setRepos] = useState([]);
+
+    useEffect(() => {
+        let repoArr = [];
+        if (session) {
+            console.log(session.user, "session");
+            let uid = session.user.image.slice(40, 48);
+            axios.get(`https://api.github.com/user/${uid}`).then((res) => {
+                console.log(res.data, "re");
+                axios.get(`https://api.github.com/users/${res.data.login}/repos`).then((res) => {
+                    res.data.map((repo) => {
+                        repoArr.push({
+                            value: repo.html_url,
+                            label: repo.name
+                        });
+                    });
+                    console.log(repoArr);
+                    setRepos(repoArr);
+                });
+            });
+        } else {
+            repoArr.push({
+                value: "Configure your github app",
+                label: "Configure your github app"
+            });
+            setRepos(repoArr);
+        }
+    }, [session]);
+
     const [count, setCount] = useState(1);
-    //TODO:  Set the value to be repo's unique value getting from GitHub API.
-    const repos = [
-        { value: "Project 1", label: "Project 1" },
-        { value: "Project 2", label: "Project 2" },
-        { value: "Project 3", label: "Project 3" }
-    ];
 
     const icons = [{ src: github }, { src: docker }, { src: nodejs }, { src: google_cloud }];
 
@@ -80,7 +104,7 @@ const SelectRepo = () => {
                             </div>
 
                             <div className="button-container">
-                                <Button className="next" text="Next" redirectPage={"/lol"} />
+                                <Button className="next" text="Next" cb={() => signOut()} />
                             </div>
 
                             {/* <div className={styles.environment_container}>

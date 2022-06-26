@@ -1,8 +1,15 @@
 import Select from "react-select";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { signIn } from "next-auth/react";
 
 const Dropdown = ({ options, placeholder }) => {
     const [selectedOption, setSelectedOption] = useState(null);
+
+    useEffect(() => {
+        if (selectedOption?.value === "Configure your github app") {
+            signIn();
+        }
+    }, [selectedOption]);
 
     const customStyles = {
         option: (provided, state) => ({
