@@ -4,6 +4,7 @@ import NonSelectableTableComponent from "../components/NonSelectableTable";
 import styles from "../styles/Dashboard.module.css";
 import { tableData } from "../components/data";
 import { calculateData } from "../utils/dashboardTableDataBuilder";
+import withAuth from "../components/PrivateRoute";
 
 const Dashboard = () => {
     const labels = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July"];
@@ -167,4 +168,4 @@ const Dashboard = () => {
         </div>
     );
 };
-export default Dashboard;
+export default withAuth(Dashboard);

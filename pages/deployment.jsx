@@ -6,6 +6,7 @@ import { Bounce, Fade, Slide } from "react-awesome-reveal";
 import styles from "../styles/CreateInstance.module.css";
 import StepProgressBar from "../components/ProgressBar";
 import { useState } from "react";
+import withAuth from "../components/PrivateRoute";
 
 const Deployment = () => {
     const [percent, setPercent] = useState(0.6);
@@ -37,4 +38,4 @@ const Deployment = () => {
     );
 };
 
-export default Deployment;
+export default withAuth(Deployment);

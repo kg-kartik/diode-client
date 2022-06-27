@@ -11,6 +11,7 @@ import { IoLogoReact, IoLogoNodejs } from "react-icons/io5";
 import { DiDjango } from "react-icons/di";
 import { SiFastapi, SiFlask, SiRedis } from "react-icons/si";
 import { useRouter } from "next/router";
+import withAuth from "../components/PrivateRoute";
 
 const SelectRepo = () => {
     const { data: session } = useSession();
@@ -44,17 +45,18 @@ const SelectRepo = () => {
         }
     }, [session]);
 
+    const [selectedName, setSelectedName] = useState("");
     const [selected, setSelected] = useState(false);
     const [dropdownValue, setDropdownValue] = useState("");
 
     const handleDropdownValue = (inputValue) => {
-        setDropdownValue(inputValue);
+        setDropdownValue(inputValue.value);
     };
 
     const nextHandle = () => {
         router.push({
-            pathname: "/selectInstance",
-            query: { repo: dropdownValue, buildpack: selected }
+            pathname: "/environment",
+            query: { repo: dropdownValue, buildpack: selectedName }
         });
     };
 
@@ -88,6 +90,7 @@ const SelectRepo = () => {
                                         className={styles.border}
                                         onClick={() => {
                                             setSelected(0);
+                                            setSelectedName("react");
                                         }}
                                         style={{ border: selected === 0 ? "1px solid grey" : "" }}
                                     >
@@ -97,6 +100,7 @@ const SelectRepo = () => {
                                         className={styles.border}
                                         onClick={() => {
                                             setSelected(1);
+                                            setSelectedName("node");
                                         }}
                                         style={{ border: selected === 1 ? "1px solid grey" : "" }}
                                     >
@@ -106,6 +110,7 @@ const SelectRepo = () => {
                                         className={styles.border}
                                         onClick={() => {
                                             setSelected(2);
+                                            setSelectedName("django");
                                         }}
                                         style={{ border: selected === 2 ? "1px solid grey" : "" }}
                                     >
@@ -115,6 +120,7 @@ const SelectRepo = () => {
                                         className={styles.border}
                                         onClick={() => {
                                             setSelected(3);
+                                            setSelectedName("fastapi");
                                         }}
                                         style={{ border: selected === 3 ? "1px solid grey" : "" }}
                                     >
@@ -124,6 +130,7 @@ const SelectRepo = () => {
                                         className={styles.border}
                                         onClick={() => {
                                             setSelected(4);
+                                            setSelectedName("flask");
                                         }}
                                         style={{ border: selected === 4 ? "1px solid grey" : "" }}
                                     >
@@ -133,6 +140,7 @@ const SelectRepo = () => {
                                         className={styles.border}
                                         onClick={() => {
                                             setSelected(5);
+                                            setSelectedName("redis");
                                         }}
                                         style={{ border: selected === 5 ? "1px solid grey" : "" }}
                                     >
@@ -142,7 +150,7 @@ const SelectRepo = () => {
                             </div>
 
                             <div className="button-container">
-                                <Button className="next" text="Next" cb={nextHandle()} />
+                                <Button className="next" text="Next" cb={nextHandle} />
                             </div>
                         </div>
                     </Fade>
@@ -151,4 +159,4 @@ const SelectRepo = () => {
         </div>
     );
 };
-export default SelectRepo;
+export default withAuth(SelectRepo);

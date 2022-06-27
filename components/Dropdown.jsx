@@ -2,8 +2,13 @@ import Select from "react-select";
 import { useEffect, useState } from "react";
 import { signIn } from "next-auth/react";
 
-const Dropdown = ({ options, placeholder }) => {
+const Dropdown = ({ options, placeholder, cb }) => {
     const [selectedOption, setSelectedOption] = useState(null);
+
+    const handleValueChange = (val) => {
+        setSelectedOption(val);
+        cb(val);
+    };
 
     useEffect(() => {
         if (selectedOption?.value === "Configure your github app") {
@@ -55,7 +60,7 @@ const Dropdown = ({ options, placeholder }) => {
                     }
                 })}
                 defaultValue={selectedOption}
-                onChange={setSelectedOption}
+                onChange={(val) => handleValueChange(val)}
                 options={options}
             />
         </>

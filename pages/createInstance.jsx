@@ -8,14 +8,20 @@ import styles from "../styles/CreateInstance.module.css";
 import InputBox from "../components/InputBox";
 import Axios from "axios";
 import { useRouter } from "next/router";
+import withAuth from "../components/PrivateRoute";
 
 const CreateInstance = () => {
     const [options, setOptions] = useState([]);
     const router = useRouter();
 
+    let user;
+    if (typeof window !== "undefined") {
+        user = JSON.parse(localStorage.getItem("user"));
+    }
+
     useEffect(() => {
-        Axios.post("https://876f-103-87-56-67.ngrok.io/details/all", {
-            token: "612528e31e02e0279cb3f08d5237af11a9f780a0991e1b653663b5871dcf6543"
+        Axios.post("https://6e5b-103-87-56-94.ngrok.io/details/all", {
+            token: user.personalaccesstoken
         })
             .then((res) => {
                 let regions = [];
@@ -41,7 +47,7 @@ const CreateInstance = () => {
     };
 
     const handleDropdownValue = (inputValue) => {
-        setDropdownValue(inputValue);
+        setDropdownValue(inputValue.value);
     };
 
     const nextHandle = () => {
@@ -95,4 +101,4 @@ const CreateInstance = () => {
     );
 };
 
-export default CreateInstance;
+export default withAuth(CreateInstance);

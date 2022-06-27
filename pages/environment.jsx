@@ -6,9 +6,12 @@ import Button from "../components/Button";
 import Image from "next/image";
 import { AiFillDelete } from "react-icons/ai";
 import { MdAddCircle } from "react-icons/md";
+import withAuth from "../components/PrivateRoute";
+import { useRouter } from "next/router";
 
 const Environment = () => {
     const [fields, setFields] = useState([{ value: null }]);
+    const router = useRouter();
 
     const handleChangeKey = (i, event) => {
         const values = [...fields];
@@ -32,6 +35,17 @@ const Environment = () => {
         const values = [...fields];
         values.splice(i, 1);
         setFields(values);
+    };
+
+    const nextHandle = () => {
+        router.push({
+            pathname: "/createInstance",
+            query: {
+                environment: fields,
+                repo: router.query.repo,
+                buildpack: router.query.buildpack
+            }
+        });
     };
 
     return (
@@ -80,12 +94,12 @@ const Environment = () => {
                             <></>
                         </div>
                     </Fade>
-                    <div style={{ display: "flex", justifyContent: "center", marginTop: "80px" }}>
-                        <Button size={"large"} showArrow={false} text="Deploy App" cb={() => {}} />
+                    <div className="button-container">
+                        <Button className="next" text="Next" cb={nextHandle} />
                     </div>
                 </div>
             </div>
         </div>
     );
 };
-export default Environment;
+export default withAuth(Environment);
