@@ -37,11 +37,13 @@ const Environment = () => {
         setFields(values);
     };
 
+    console.log(fields, "fields");
+
     const nextHandle = () => {
         router.push({
             pathname: "/createInstance",
             query: {
-                environment: fields,
+                env: JSON.stringify(fields),
                 repo: router.query.repo,
                 buildpack: router.query.buildpack
             }

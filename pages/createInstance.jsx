@@ -20,7 +20,7 @@ const CreateInstance = () => {
     }
 
     useEffect(() => {
-        Axios.post("https://6e5b-103-87-56-94.ngrok.io/details/all", {
+        Axios.post("http://172.105.40.93/details/all", {
             token: user.personalaccesstoken
         })
             .then((res) => {
@@ -53,7 +53,7 @@ const CreateInstance = () => {
     const nextHandle = () => {
         router.push({
             pathname: "/selectInstance",
-            query: { name: inputValue, region: dropdownValue }
+            query: { name: inputValue, region: dropdownValue, ...router.query }
         });
     };
 
