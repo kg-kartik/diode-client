@@ -161,7 +161,7 @@ const SelectInstance = (props) => {
         //For creating instance
         setLoading(true);
         axios
-            .post("http://172.105.40.93/instance/create", {
+            .post(`${process.env.NEXT_PUBLIC_FASTAPI_URL}/instance/create`, {
                 token: user.personalaccesstoken,
                 instance_type: localStorage.getItem("instanceId"),
                 region: router.query.region,
@@ -170,7 +170,7 @@ const SelectInstance = (props) => {
             .then((res) => {
                 console.log(res.data, "instance ar");
                 axios
-                    .post("http://172.104.207.139/user/createInstance", {
+                    .post(`${process.env.NEXT_PUBLIC_NODE_URL}/user/createInstance`, {
                         instanceDetails: {
                             ssh_key: res.data.password,
                             ...router.query,
@@ -186,35 +186,54 @@ const SelectInstance = (props) => {
                         const getStatus = () => {
                             axios
                                 .get(
-                                    `http://172.105.40.93/instance/status?id=${res.data.id}&token=${user.personalaccesstoken}`
+                                    `${process.env.NEXT_PUBLIC_FASTAPI_URL}/instance/status?id=${res.data.id}&token=${user.personalaccesstoken}`
                                 )
                                 .then((resp) => {
                                     let count = 0;
                                     console.log(count + 1);
                                     if (resp.data.status !== "running") {
-                                        setTimeout(getStatus, 5000);
+                                        setTimeout(getStatus, 10000);
                                     } else {
                                         let obj = {};
 
+                                        console.log(response.data.data.env);
+
                                         for (var i = 0; i < response.data.data.env.length; i++) {
                                             var item = response.data.data.env[i];
+
                                             obj[item.key] = item.value;
+                                            console.log(obj);
                                         }
 
+                                        if (
+                                            response.data.data.env.length === 1 &&
+                                            response.data.data.env[0].value === null
+                                        ) {
+                                            obj = {};
+                                        }
+
+                                        console.log(obj, "object");
+
                                         axios
-                                            .post("http://172.105.40.93/deploy/repo_new", {
-                                                ip_addr: response.data.data.ip_address,
-                                                ssh_key: res.data.password,
-                                                app_type: response.data.data.buildpack,
-                                                repo_url: response.data.data.repo,
-                                                env: JSON.stringify(env)
-                                            })
+                                            .post(
+                                                `${process.env.NEXT_PUBLIC_FASTAPI_URL}/deploy/repo_new`,
+                                                {
+                                                    ip_addr: response.data.data.ip_address,
+                                                    ssh_key: res.data.password,
+                                                    app_type: response.data.data.buildpack,
+                                                    repo_url: response.data.data.repo,
+                                                    env: obj
+                                                }
+                                            )
                                             .then((resDeploy) => {
                                                 console.log(resDeploy.data, "deployment");
                                                 setLoading(false);
                                                 router.push({
                                                     pathname: "/deployment",
-                                                    query: { taskId: resDeploy.data.task_id }
+                                                    query: {
+                                                        taskId: resDeploy.data.task_id,
+                                                        ip: response.data.data.ip_address
+                                                    }
                                                 });
                                             })
                                             .catch((err) => {
