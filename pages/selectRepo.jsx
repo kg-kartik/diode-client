@@ -12,6 +12,8 @@ import { DiDjango } from "react-icons/di";
 import { SiFastapi, SiFlask, SiRedis } from "react-icons/si";
 import { useRouter } from "next/router";
 import withAuth from "../components/PrivateRoute";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const SelectRepo = () => {
     const { data: session } = useSession();
@@ -61,102 +63,117 @@ const SelectRepo = () => {
     };
 
     return (
-        <div className={styles.section}>
-            <div className={styles.container}>
-                <Bounce>
-                    <div className={styles.left}>
-                        <Image src={backImage} alt="illus" />
-                    </div>
-                </Bounce>
+        <>
+            <Navbar />
+            <div className={styles.section}>
+                <div className={styles.container}>
+                    <Bounce>
+                        <div className={styles.left}>
+                            <Image src={backImage} alt="illus" />
+                        </div>
+                    </Bounce>
 
-                <div className={styles.right}>
-                    <Fade cascade triggerOnce>
-                        <h2 className={styles.heading}>Connect to your GitHub repo</h2>
-                        <p className="subheading">Link your GitHub repo in just few clicks</p>
-                        <div className={styles.repoContainer}>
-                            <div className={styles.form}>
-                                <p className="label">Github Repos</p>
-                                <Dropdown
-                                    placeholder={"Select repo"}
-                                    options={repos}
-                                    value={dropdownValue}
-                                    cb={handleDropdownValue}
-                                />
-                            </div>
-                            <div className={styles.icons}>
-                                <p className="label">Select Buildpack</p>
-                                <div className={styles.iconsList}>
-                                    <div
-                                        className={styles.border}
-                                        onClick={() => {
-                                            setSelected(0);
-                                            setSelectedName("react");
-                                        }}
-                                        style={{ border: selected === 0 ? "1px solid grey" : "" }}
-                                    >
-                                        <IoLogoReact className={styles.react} />
-                                    </div>
-                                    <div
-                                        className={styles.border}
-                                        onClick={() => {
-                                            setSelected(1);
-                                            setSelectedName("node");
-                                        }}
-                                        style={{ border: selected === 1 ? "1px solid grey" : "" }}
-                                    >
-                                        <IoLogoNodejs className={styles.node} />
-                                    </div>
-                                    <div
-                                        className={styles.border}
-                                        onClick={() => {
-                                            setSelected(2);
-                                            setSelectedName("django");
-                                        }}
-                                        style={{ border: selected === 2 ? "1px solid grey" : "" }}
-                                    >
-                                        <DiDjango className={styles.django} />
-                                    </div>
-                                    <div
-                                        className={styles.border}
-                                        onClick={() => {
-                                            setSelected(3);
-                                            setSelectedName("fastapi");
-                                        }}
-                                        style={{ border: selected === 3 ? "1px solid grey" : "" }}
-                                    >
-                                        <SiFastapi className={styles.fast} />
-                                    </div>
-                                    <div
-                                        className={styles.border}
-                                        onClick={() => {
-                                            setSelected(4);
-                                            setSelectedName("flask");
-                                        }}
-                                        style={{ border: selected === 4 ? "1px solid grey" : "" }}
-                                    >
-                                        <SiFlask className={styles.flask} />
-                                    </div>
-                                    <div
-                                        className={styles.border}
-                                        onClick={() => {
-                                            setSelected(5);
-                                            setSelectedName("redis");
-                                        }}
-                                        style={{ border: selected === 5 ? "1px solid grey" : "" }}
-                                    >
-                                        <SiRedis className={styles.redis} />
+                    <div className={styles.right}>
+                        <Fade cascade triggerOnce>
+                            <h2 className={styles.heading}>Connect to your GitHub repo</h2>
+                            <p className="subheading">Link your GitHub repo in just few clicks</p>
+                            <div className={styles.repoContainer}>
+                                <div className={styles.form}>
+                                    <p className="label">Github Repos</p>
+                                    <Dropdown
+                                        placeholder={"Select repo"}
+                                        options={repos}
+                                        value={dropdownValue}
+                                        cb={handleDropdownValue}
+                                    />
+                                </div>
+                                <div className={styles.icons}>
+                                    <p className="label">Select Buildpack</p>
+                                    <div className={styles.iconsList}>
+                                        <div
+                                            className={styles.border}
+                                            onClick={() => {
+                                                setSelected(0);
+                                                setSelectedName("react");
+                                            }}
+                                            style={{
+                                                border: selected === 0 ? "1px solid grey" : ""
+                                            }}
+                                        >
+                                            <IoLogoReact className={styles.react} />
+                                        </div>
+                                        <div
+                                            className={styles.border}
+                                            onClick={() => {
+                                                setSelected(1);
+                                                setSelectedName("node");
+                                            }}
+                                            style={{
+                                                border: selected === 1 ? "1px solid grey" : ""
+                                            }}
+                                        >
+                                            <IoLogoNodejs className={styles.node} />
+                                        </div>
+                                        <div
+                                            className={styles.border}
+                                            onClick={() => {
+                                                setSelected(2);
+                                                setSelectedName("django");
+                                            }}
+                                            style={{
+                                                border: selected === 2 ? "1px solid grey" : ""
+                                            }}
+                                        >
+                                            <DiDjango className={styles.django} />
+                                        </div>
+                                        <div
+                                            className={styles.border}
+                                            onClick={() => {
+                                                setSelected(3);
+                                                setSelectedName("fastapi");
+                                            }}
+                                            style={{
+                                                border: selected === 3 ? "1px solid grey" : ""
+                                            }}
+                                        >
+                                            <SiFastapi className={styles.fast} />
+                                        </div>
+                                        <div
+                                            className={styles.border}
+                                            onClick={() => {
+                                                setSelected(4);
+                                                setSelectedName("flask");
+                                            }}
+                                            style={{
+                                                border: selected === 4 ? "1px solid grey" : ""
+                                            }}
+                                        >
+                                            <SiFlask className={styles.flask} />
+                                        </div>
+                                        <div
+                                            className={styles.border}
+                                            onClick={() => {
+                                                setSelected(5);
+                                                setSelectedName("redis");
+                                            }}
+                                            style={{
+                                                border: selected === 5 ? "1px solid grey" : ""
+                                            }}
+                                        >
+                                            <SiRedis className={styles.redis} />
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div className="button-container">
-                                <Button className="next" text="Next" cb={nextHandle} />
+                                <div className="button-container">
+                                    <Button className="next" text="Next" cb={nextHandle} />
+                                </div>
                             </div>
-                        </div>
-                    </Fade>
+                        </Fade>
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 };
 export default withAuth(SelectRepo);

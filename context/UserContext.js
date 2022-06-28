@@ -30,7 +30,7 @@ export const UserProvider = ({ children }) => {
         }
     }, []);
     const login = (token) => {
-        Axios.post("http://localhost:5000/user/signup", {
+        Axios.post("http://172.104.207.139/user/signup", {
             personalaccesstoken: token
         })
             .then((res) => res.data.data)

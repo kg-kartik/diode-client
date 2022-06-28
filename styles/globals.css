@@ -137,3 +137,44 @@ td {
     font-weight: 600;
     border-bottom: 0.3rem solid blue;
 }
+
+.redis {
+    height: 35px;
+    width: 35px;
+    color: #d82c20;
+}
+
+.flask {
+    height: 35px;
+    width: 35px;
+    color: white;
+}
+
+.react {
+    height: 35px;
+    width: 35px;
+    color: #61dbfb;
+}
+
+.fast {
+    height: 35px;
+    width: 35px;
+    color: #429a8c;
+}
+
+.django {
+    height: 35px;
+    width: 35px;
+    color: #0f2d1e;
+    transform: scale(1.1);
+}
+
+.node {
+    color: #4f9640;
+    height: 35px;
+    width: 35px;
+}
+
+.cardsContainer {
+    overflow-x: hidden;
+}

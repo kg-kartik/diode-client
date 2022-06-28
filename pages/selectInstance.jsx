@@ -5,6 +5,8 @@ import data from "../constants/data";
 import { useRouter } from "next/router";
 import withAuth from "../components/PrivateRoute";
 import axios from "axios";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 function filterData(filterValue) {
     const result = data.filter((item) => item.class === filterValue);
@@ -166,7 +168,7 @@ const SelectInstance = (props) => {
             .then((res) => {
                 console.log(res.data, "instance ar");
                 axios
-                    .post("http://localhost:5000/user/createInstance", {
+                    .post("http://172.104.207.139/user/createInstance", {
                         instanceDetails: {
                             ssh_key: res.data.password,
                             ...router.query,
@@ -236,28 +238,38 @@ const SelectInstance = (props) => {
     };
 
     return (
-        <div className="AboutArea">
-            <h2
-                style={{
-                    marginBottom: "3%",
-                    marginLeft: "5%"
-                }}
-            >
-                Select Instance Type
-            </h2>
-            <div className="container" style={{ marginLeft: "5%" }}>
-                <Navigation tabs={tabs} onNavClick={setActiveTab} activeTabId={activeTabId} />
+        <>
+            <Navbar />
+            <div className="AboutArea" style={{ marginTop: "100px" }}>
+                <h2
+                    style={{
+                        marginBottom: "3%",
+                        marginLeft: "5%"
+                    }}
+                >
+                    Select Instance Type
+                </h2>
+                <div className="container" style={{ marginLeft: "5%" }}>
+                    <Navigation tabs={tabs} onNavClick={setActiveTab} activeTabId={activeTabId} />
+                </div>
+                <Tab tab={activeTab} />
+                <div
+                    style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        marginTop: "80px",
+                        marginBottom: "100px"
+                    }}
+                >
+                    <Button
+                        size={"large"}
+                        showArrow={false}
+                        text="Create Instance"
+                        cb={createInstanceCall}
+                    />
+                </div>
             </div>
-            <Tab tab={activeTab} />
-            <div style={{ display: "flex", justifyContent: "center", marginTop: "80px" }}>
-                <Button
-                    size={"large"}
-                    showArrow={false}
-                    text="Create Instance"
-                    cb={createInstanceCall}
-                />
-            </div>
-        </div>
+        </>
     );
 };
 
