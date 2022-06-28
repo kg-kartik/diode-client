@@ -23,7 +23,7 @@ const CreateInstance = () => {
 
     useEffect(() => {
         Axios.post("http://172.105.40.93/details/all", {
-            token: user.personalaccesstoken
+            token: user?.personalaccesstoken
         })
             .then((res) => {
                 let regions = [];

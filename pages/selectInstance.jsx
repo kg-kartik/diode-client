@@ -147,6 +147,7 @@ const Navigation = (props) => {
 
 const SelectInstance = (props) => {
     const [activeTabId, setActiveTab] = useState(tabs[0].id);
+    const [loading, setLoading] = useState('');
     const router = useRouter();
 
     const activeTab = useMemo(() => tabs.find((tab) => tab.id === activeTabId), [activeTabId]);
@@ -158,6 +159,7 @@ const SelectInstance = (props) => {
 
     const createInstanceCall = () => {
         //For creating instance
+        setLoading(true);
         axios
             .post("http://172.105.40.93/instance/create", {
                 token: user.personalaccesstoken,
@@ -227,6 +229,7 @@ const SelectInstance = (props) => {
                         // };
 
                         // startRequest();
+                        setLoading(false);
                     })
                     .catch((err) => {
                         console.log(err);
@@ -266,6 +269,7 @@ const SelectInstance = (props) => {
                         showArrow={false}
                         text="Create Instance"
                         cb={createInstanceCall}
+                        loading={loading}
                     />
                 </div>
             </div>
