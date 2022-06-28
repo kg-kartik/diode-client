@@ -5,6 +5,9 @@ import styles from "../styles/Dashboard.module.css";
 import { tableData } from "../components/data";
 import { calculateData } from "../utils/dashboardTableDataBuilder";
 import withAuth from "../components/PrivateRoute";
+import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
+
 
 const Dashboard = () => {
     const labels = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July"];
@@ -122,50 +125,54 @@ const Dashboard = () => {
     );
 
     return (
-        <div>
-            <div className={styles.firstRow}>
-                <div className={styles.outerContainer}>
-                    <div className={styles.chartContainer}>
-                        <LineChart data={data1} />
-                    </div>
+        <>
+            <Navbar />
+            <div>
+                <div className={styles.firstRow}>
+                    <div className={styles.outerContainer}>
+                        <div className={styles.chartContainer}>
+                            <LineChart data={data1} />
+                        </div>
 
-                    <NonSelectableTableComponent
-                        data1={calculateData("swap", tableData.data.io.swap)}
-                        data2={calculateData("io", tableData.data.io.io)}
-                    />
-                </div>
-                <div className={styles.outerContainer}>
-                    <div className={styles.chartContainer}>
-                        <LineChart data={data2} />
+                        <NonSelectableTableComponent
+                            data1={calculateData("swap", tableData.data.io.swap)}
+                            data2={calculateData("io", tableData.data.io.io)}
+                        />
                     </div>
-                    <NonSelectableTableComponent
-                        data1={calculateData("in", tableData.data.netv6.in)}
-                        data2={calculateData("out", tableData.data.netv6.out)}
-                        data3={calculateData("private_in", tableData.data.netv6.private_in)}
-                        data4={calculateData("private_out", tableData.data.netv6.private_out)}
-                    />
+                    <div className={styles.outerContainer}>
+                        <div className={styles.chartContainer}>
+                            <LineChart data={data2} />
+                        </div>
+                        <NonSelectableTableComponent
+                            data1={calculateData("in", tableData.data.netv6.in)}
+                            data2={calculateData("out", tableData.data.netv6.out)}
+                            data3={calculateData("private_in", tableData.data.netv6.private_in)}
+                            data4={calculateData("private_out", tableData.data.netv6.private_out)}
+                        />
+                    </div>
+                </div>
+                <div className={styles.secondRow}>
+                    <div className={styles.outerContainer}>
+                        <div className={styles.chartContainer}>
+                            <LineChart data={data3} />
+                        </div>
+                        <NonSelectableTableComponent
+                            data1={calculateData("in", tableData.data.netv4.in)}
+                            data2={calculateData("out", tableData.data.netv4.out)}
+                            data3={calculateData("private_in", tableData.data.netv4.private_in)}
+                            data4={calculateData("private_out", tableData.data.netv4.private_out)}
+                        />
+                    </div>
+                    <div className={styles.outerContainer}>
+                        <div className={styles.chartContainer}>
+                            <LineChart data={data4} />
+                        </div>
+                        <NonSelectableTableComponent data1={calculateData("cpu", tableData.data.cpu)} />
+                    </div>
                 </div>
             </div>
-            <div className={styles.secondRow}>
-                <div className={styles.outerContainer}>
-                    <div className={styles.chartContainer}>
-                        <LineChart data={data3} />
-                    </div>
-                    <NonSelectableTableComponent
-                        data1={calculateData("in", tableData.data.netv4.in)}
-                        data2={calculateData("out", tableData.data.netv4.out)}
-                        data3={calculateData("private_in", tableData.data.netv4.private_in)}
-                        data4={calculateData("private_out", tableData.data.netv4.private_out)}
-                    />
-                </div>
-                <div className={styles.outerContainer}>
-                    <div className={styles.chartContainer}>
-                        <LineChart data={data4} />
-                    </div>
-                    <NonSelectableTableComponent data1={calculateData("cpu", tableData.data.cpu)} />
-                </div>
-            </div>
-        </div>
+            <Footer />
+        </>
     );
 };
 export default withAuth(Dashboard);

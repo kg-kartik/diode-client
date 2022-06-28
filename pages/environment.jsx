@@ -8,6 +8,8 @@ import { AiFillDelete } from "react-icons/ai";
 import { MdAddCircle } from "react-icons/md";
 import withAuth from "../components/PrivateRoute";
 import { useRouter } from "next/router";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const Environment = () => {
     const [fields, setFields] = useState([{ value: null }]);
@@ -49,57 +51,61 @@ const Environment = () => {
     };
 
     return (
-        <div className={styles.section}>
-            <div className={styles.container}>
-                <Bounce>
-                    <div className={styles.left}>
-                        <Image src={backImage} alt="illus" />
-                    </div>
-                </Bounce>
-
-                <div className={styles.right}>
-                    <Fade cascade triggerOnce>
-                        <h2 className={styles.heading}>Set Environment Variables</h2>
-                        <div className={styles.repoContainer}>
-                            <div className={styles.environment_container}>
-                                <p className="label">Add Environment Variables</p>
-                            </div>
-
-                            {fields.map((field, idx) => {
-                                return (
-                                    <div className={styles.input_container}>
-                                        <input
-                                            className="input-box"
-                                            placeholder="Enter key"
-                                            value={field.key}
-                                            onChange={(e) => handleChangeKey(idx, e)}
-                                        />
-                                        <input
-                                            className="input-box"
-                                            placeholder="Enter Value"
-                                            value={field.value}
-                                            onChange={(e) => handleChangeValue(idx, e)}
-                                        />
-                                        <MdAddCircle className={styles.add} onClick={handleAdd} />
-
-                                        {idx !== 0 && (
-                                            <AiFillDelete
-                                                className={styles.delete}
-                                                onClick={() => handleRemove(idx)}
-                                            />
-                                        )}
-                                    </div>
-                                );
-                            })}
-                            <></>
+        <>
+            <Navbar />
+            <div className={styles.section}>
+                <div className={styles.container}>
+                    <Bounce>
+                        <div className={styles.left}>
+                            <Image src={backImage} alt="illus" />
                         </div>
-                    </Fade>
-                    <div className="button-container">
-                        <Button className="next" text="Next" cb={nextHandle} />
+                    </Bounce>
+
+                    <div className={styles.right}>
+                        <Fade cascade triggerOnce>
+                            <h2 className={styles.heading}>Set Environment Variables</h2>
+                            <div className={styles.repoContainer}>
+                                <div className={styles.environment_container}>
+                                    <p className="label">Add Environment Variables</p>
+                                </div>
+
+                                {fields.map((field, idx) => {
+                                    return (
+                                        <div className={styles.input_container}>
+                                            <input
+                                                className="input-box"
+                                                placeholder="Enter key"
+                                                value={field.key}
+                                                onChange={(e) => handleChangeKey(idx, e)}
+                                            />
+                                            <input
+                                                className="input-box"
+                                                placeholder="Enter Value"
+                                                value={field.value}
+                                                onChange={(e) => handleChangeValue(idx, e)}
+                                            />
+                                            <MdAddCircle className={styles.add} onClick={handleAdd} />
+
+                                            {idx !== 0 && (
+                                                <AiFillDelete
+                                                    className={styles.delete}
+                                                    onClick={() => handleRemove(idx)}
+                                                />
+                                            )}
+                                        </div>
+                                    );
+                                })}
+                                <></>
+                            </div>
+                        </Fade>
+                        <div className="button-container">
+                            <Button className="next" text="Next" cb={nextHandle} />
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+            <Footer />
+        </>
     );
 };
 export default withAuth(Environment);

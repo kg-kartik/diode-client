@@ -3,7 +3,15 @@
     width: 100%;
     display: flex;
     justify-content: space-around;
+}
+
+.firstRow {
+    margin-top: 70px;
+}
+
+.secondRow {
     margin-top: 20px;
+    margin-bottom: 100px;
 }
 
 .outerContainer {

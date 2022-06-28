@@ -1,0 +1,25 @@
+.card {
+    min-height: 150px;
+    width: 300px;
+    border-radius: 8px;
+    background-color: rgb(36, 38, 48);
+    display: flex;
+    flex-direction: column;
+    color: white;
+    justify-content: space-around;
+    align-items: flex-start !important;
+    padding-left: 20px;
+}
+
+.buildPack {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.heading {}
+
+.card:hover {
+    background-color: rgb(54, 53, 64);
+    cursor: pointer;
+}

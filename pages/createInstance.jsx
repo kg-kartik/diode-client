@@ -9,6 +9,9 @@ import InputBox from "../components/InputBox";
 import Axios from "axios";
 import { useRouter } from "next/router";
 import withAuth from "../components/PrivateRoute";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+
 
 const CreateInstance = () => {
     const [options, setOptions] = useState([]);
@@ -21,7 +24,7 @@ const CreateInstance = () => {
 
     useEffect(() => {
         Axios.post("https://6e5b-103-87-56-94.ngrok.io/details/all", {
-            token: user.personalaccesstoken
+            token: user?.personalaccesstoken
         })
             .then((res) => {
                 let regions = [];
@@ -58,46 +61,50 @@ const CreateInstance = () => {
     };
 
     return (
-        <div className={styles.section}>
-            <div className={styles.container}>
-                <Bounce>
-                    <div className={styles.left}>
-                        <Image src={leftImage} alt="illus" />
-                    </div>
-                </Bounce>
-
-                <div className={styles.right}>
-                    <Fade cascade triggerOnce>
-                        <h2 className={styles.heading}>New Project ✨</h2>
-                        <p className="subheading">The first step to building something awesome</p>
-                        <div className={styles.formContainer}>
-                            <div className={styles.form}>
-                                <p className="label">Project Name</p>
-                                {/* <Dropdown placeholder={"Select region"} options={options1} /> */}
-                                <InputBox
-                                    value={inputValue}
-                                    placeholder={"Something cool...?"}
-                                    cb={handleInputValue}
-                                />
-                            </div>
-
-                            <div className={styles.form}>
-                                <p className="label">Region</p>
-                                <Dropdown
-                                    value={dropdownValue}
-                                    cb={handleDropdownValue}
-                                    placeholder={"Somewhere Close"}
-                                    options={options}
-                                />
-                            </div>
+        <>
+            <Navbar />
+            <div className={styles.section}>
+                <div className={styles.container}>
+                    <Bounce>
+                        <div className={styles.left}>
+                            <Image src={leftImage} alt="illus" />
                         </div>
-                    </Fade>
+                    </Bounce>
+
+                    <div className={styles.right}>
+                        <Fade cascade triggerOnce>
+                            <h2 className={styles.heading}>New Project ✨</h2>
+                            <p className="subheading">The first step to building something awesome</p>
+                            <div className={styles.formContainer}>
+                                <div className={styles.form}>
+                                    <p className="label">Project Name</p>
+                                    {/* <Dropdown placeholder={"Select region"} options={options1} /> */}
+                                    <InputBox
+                                        value={inputValue}
+                                        placeholder={"Something cool...?"}
+                                        cb={handleInputValue}
+                                    />
+                                </div>
+
+                                <div className={styles.form}>
+                                    <p className="label">Region</p>
+                                    <Dropdown
+                                        value={dropdownValue}
+                                        cb={handleDropdownValue}
+                                        placeholder={"Somewhere Close"}
+                                        options={options}
+                                    />
+                                </div>
+                            </div>
+                        </Fade>
+                    </div>
+                </div>
+                <div className="button-container">
+                    <Button className="next" text="Next" cb={nextHandle} />
                 </div>
             </div>
-            <div className="button-container">
-                <Button className="next" text="Next" cb={nextHandle} />
-            </div>
-        </div>
+            <Footer />
+        </>
     );
 };
 

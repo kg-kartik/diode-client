@@ -1,0 +1,15 @@
+.cardsContainer {
+    max-width: 900px;
+    margin: 80px auto;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 10px 10px;
+    align-items: center;
+}
+
+.items {}
+
+.cardsContainer>* {
+    display: flex;
+    align-items: center;
+}
