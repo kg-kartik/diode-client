@@ -9,11 +9,32 @@ import { useState } from "react";
 import withAuth from "../components/PrivateRoute";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import axios from "axios";
+import { useRouter } from "next/router";
 
 const Deployment = () => {
-    const [percent, setPercent] = useState(0.6);
+    const [percent, setPercent] = useState(0);
+    const [status, setStatus] = useState("");
+    const router = useRouter();
 
-    // useEffect(() => {});
+    useEffect(() => {
+        const getStatus = () => {
+            axios
+                .get(`http://172.105.40.93/deploy/repo_status/${router.query.taskId}`)
+                .then((res) => {
+                    if (res.data.task_status === "SUCCESS" || res.data.task_status === "FAILED") {
+                        setPercent(1);
+                    } else {
+                        setPercent(res.data.task_result.process.percent);
+                        setTimeout(getStatus, 5000);
+                    }
+                    setStatus(res.data.task_status);
+                });
+        };
+
+        getStatus();
+    }, []);
+
     return (
         <>
             <Navbar />
@@ -30,9 +51,11 @@ const Deployment = () => {
                             <h2 className={styles.heading}>Deploying your new cluster ✨</h2>
                             <p className="subheading">Some filler text...</p>
 
-                            <div className="progress-bar">
+                            <h4>{percent * 100}% complete</h4>
+                            <h3>{status}</h3>
+                            {/* <div className="progress-bar">
                                 <StepProgressBar />
-                            </div>
+                            </div> */}
                         </Fade>
                     </div>
                 </div>

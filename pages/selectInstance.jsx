@@ -181,8 +181,6 @@ const SelectInstance = (props) => {
                     .then((response) => {
                         console.log(res.data.password);
 
-                        // let intervalStatus = null;
-
                         const getStatus = () => {
                             axios
                                 .get(
@@ -194,8 +192,12 @@ const SelectInstance = (props) => {
                                     if (resp.data.status !== "running") {
                                         setTimeout(getStatus, 5000);
                                     } else {
-                                        // console.log(intervalStatus, "inStatus");
-                                        // clearInterval(intervalStatus);
+                                        let obj = {};
+
+                                        for (var i = 0; i < response.data.data.env.length; i++) {
+                                            var item = response.data.data.env[i];
+                                            obj[item.key] = item.value;
+                                        }
 
                                         axios
                                             .post("http://172.105.40.93/deploy/repo_new", {
@@ -203,10 +205,14 @@ const SelectInstance = (props) => {
                                                 ssh_key: res.data.password,
                                                 app_type: response.data.data.buildpack,
                                                 repo_url: response.data.data.repo,
-                                                env: response.data.data.env
+                                                env: JSON.stringify(env)
                                             })
                                             .then((resDeploy) => {
                                                 console.log(resDeploy.data, "deployment");
+                                                router.push({
+                                                    pathname: "/deployment",
+                                                    query: { taskId: resDeploy.data.task_id }
+                                                });
                                             })
                                             .catch((err) => {
                                                 console.log(err);
@@ -221,12 +227,6 @@ const SelectInstance = (props) => {
                         };
 
                         getStatus();
-                        // const startRequest = () => {
-                        //     intervalStatus = setInterval(getStatus, 5000);
-                        //     console.log(intervalStatus, "in");
-                        // };
-
-                        // startRequest();
                     })
                     .catch((err) => {
                         console.log(err);
