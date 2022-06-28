@@ -31,3 +31,10 @@
     color: white;
     background-color: #6589f7;
 }
+
+.loader {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 10px;
+}
