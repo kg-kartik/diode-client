@@ -155,25 +155,80 @@ const SelectInstance = (props) => {
     }
 
     const createInstanceCall = () => {
+        //For creating instance
         axios
-            .post("https://6e5b-103-87-56-94.ngrok.io/instance/create", {
+            .post("http://172.105.40.93/instance/create", {
                 token: user.personalaccesstoken,
                 instance_type: localStorage.getItem("instanceId"),
                 region: router.query.region,
                 image: "linode/ubuntu22.04"
             })
             .then((res) => {
-                console.log(res.data);
-                // axios.post("https://876f-103-87-56-67.ngrok.io/details/all", {
-                //     ssh_key: res.data.ssh_key,
-                //     ip_address: res.data.ip_addess
-                // })
-                //     .then((res) => {
-                //         alert("Instance created");
-                //     })
-                //     .catch((err) => {
-                //         console.log(err);
-                //     });
+                console.log(res.data, "instance ar");
+                axios
+                    .post("http://localhost:5000/user/createInstance", {
+                        instanceDetails: {
+                            ssh_key: res.data.password,
+                            ...router.query,
+                            env: JSON.parse(router.query.env),
+                            ip_address: res.data.ip4_addr,
+                            instanceId: res.data.id
+                        },
+                        userId: user._id
+                    })
+                    .then((response) => {
+                        console.log(res.data.password);
+
+                        // let intervalStatus = null;
+
+                        const getStatus = () => {
+                            axios
+                                .get(
+                                    `http://172.105.40.93/instance/status?id=${res.data.id}&token=${user.personalaccesstoken}`
+                                )
+                                .then((resp) => {
+                                    let count = 0;
+                                    console.log(count + 1);
+                                    if (resp.data.status !== "running") {
+                                        setTimeout(getStatus, 5000);
+                                    } else {
+                                        // console.log(intervalStatus, "inStatus");
+                                        // clearInterval(intervalStatus);
+
+                                        axios
+                                            .post("http://172.105.40.93/deploy/repo_new", {
+                                                ip_addr: response.data.data.ip_address,
+                                                ssh_key: res.data.password,
+                                                app_type: response.data.data.buildpack,
+                                                repo_url: response.data.data.repo,
+                                                env: response.data.data.env
+                                            })
+                                            .then((resDeploy) => {
+                                                console.log(resDeploy.data, "deployment");
+                                            })
+                                            .catch((err) => {
+                                                console.log(err);
+                                            });
+
+                                        return;
+                                    }
+                                })
+                                .catch((err) => {
+                                    console.log(err);
+                                });
+                        };
+
+                        getStatus();
+                        // const startRequest = () => {
+                        //     intervalStatus = setInterval(getStatus, 5000);
+                        //     console.log(intervalStatus, "in");
+                        // };
+
+                        // startRequest();
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    });
             })
             .catch((err) => {
                 console.log(err);
