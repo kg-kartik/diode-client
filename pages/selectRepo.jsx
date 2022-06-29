@@ -40,8 +40,8 @@ const SelectRepo = () => {
             });
         } else {
             repoArr.push({
-                value: "Configure your github app",
-                label: "Configure your github app"
+                value: "Configure your gitHub app",
+                label: "Configure your GitHub Account"
             });
             setRepos(repoArr);
         }
@@ -77,13 +77,13 @@ const SelectRepo = () => {
 
                     <div className={styles.right}>
                         <Fade cascade triggerOnce>
-                            <h2 className={styles.heading}>Connect to your GitHub repo</h2>
-                            <p className="subheading">Link your GitHub repo in just few clicks</p>
+                            <h2 className={styles.heading}>Connect your GitHub Repository 🔗</h2>
+                            <p className="subheading">Choose from one of your great creations</p>
                             <div className={styles.repoContainer}>
                                 <div className={styles.form}>
-                                    <p className="label">Github Repos</p>
+                                    <p className="label">Github Repositories</p>
                                     <Dropdown
-                                        placeholder={"Select repo"}
+                                        placeholder={"Select Repository"}
                                         options={repos}
                                         value={dropdownValue}
                                         cb={handleDropdownValue}

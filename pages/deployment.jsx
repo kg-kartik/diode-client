@@ -65,7 +65,7 @@ const Deployment = () => {
 
                     <div className={styles.right}>
                         <Fade cascade triggerOnce>
-                            <h2 className={styles.heading}>Deploying your new cluster ✨</h2>
+                            <h2 className={styles.heading}>Deploying 🚀</h2>
 
                             <h4 style={{ marginTop: "10%", fontSize: "24px", opacity: 0.8 }}>
                                 {percent * 100}% complete
