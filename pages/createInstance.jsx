@@ -22,7 +22,7 @@ const CreateInstance = () => {
     }
 
     useEffect(() => {
-        Axios.post(`{process.env.NEXT_PUBLIC_FASTAPI_URL}/details/all`, {
+        Axios.post(`${process.env.NEXT_PUBLIC_FASTAPI_URL}/details/all`, {
             token: user?.personalaccesstoken
         })
             .then((res) => {
