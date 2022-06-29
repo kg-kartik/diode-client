@@ -104,7 +104,6 @@ const CreateInstance = () => {
                     <Button className="next" text="Next" cb={nextHandle} />
                 </div>
             </div>
-            <Footer />
         </>
     );
 };

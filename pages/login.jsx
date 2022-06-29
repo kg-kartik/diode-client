@@ -32,7 +32,9 @@ const CreateInstance = () => {
                     <div className={styles.right}>
                         <Fade cascade triggerOnce>
                             <h2 className={styles.heading}>Login With Linode ✨</h2>
-                            <p className="subheading">Get your personal access token and enter here</p>
+                            <p className="subheading">
+                                Get your personal access token and enter here
+                            </p>
                             <div className={styles.formContainer}>
                                 <div className={styles.form}>
                                     <p className="label">Token</p>
@@ -56,7 +58,7 @@ const CreateInstance = () => {
                     />
                 </div>
             </div>
-            <Footer /></>
+        </>
     );
 };
 

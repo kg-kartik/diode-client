@@ -19,6 +19,7 @@ const Deployment = () => {
 
     useEffect(() => {
         const getStatus = () => {
+            if (!router.isReady) return;
             axios
                 .get(
                     `${process.env.NEXT_PUBLIC_FASTAPI_URL}/deploy/repo_status/${router.query.taskId}`
@@ -30,18 +31,20 @@ const Deployment = () => {
                     ) {
                         setPercent(1);
                     } else if (res.data?.task_status === "PENDING") {
+                        console.log("in pending");
                         setPercent(0);
-                        setTimeout(getStatus, 5000);
+                        setTimeout(getStatus, 10000);
                     } else {
+                        console.log("in");
                         setPercent(res.data?.task_result.process_percent);
-                        setTimeout(getStatus, 5000);
+                        setTimeout(getStatus, 10000);
                     }
                     setStatus(res.data?.task_status);
                 });
         };
 
         getStatus();
-    }, [router.query]);
+    }, [router.isReady]);
 
     return (
         <>

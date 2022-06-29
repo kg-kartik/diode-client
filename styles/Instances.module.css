@@ -7,9 +7,10 @@
     align-items: center;
 }
 
-.items {}
+.items {
+}
 
-.cardsContainer>* {
+.cardsContainer > * {
     display: flex;
     align-items: center;
 }

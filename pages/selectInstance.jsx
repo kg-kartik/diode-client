@@ -6,7 +6,6 @@ import { useRouter } from "next/router";
 import withAuth from "../components/PrivateRoute";
 import axios from "axios";
 import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
 
 function filterData(filterValue) {
     const result = data.filter((item) => item.class === filterValue);
