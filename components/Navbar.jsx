@@ -4,7 +4,7 @@ const Navbar = () => {
         <nav className={styles.navbar}>
             <div className={styles.container}>
                 <div className={styles.heading}>
-                    LINODE
+                    DIODE
                 </div>
                 <div className={styles.link1}>
                     Link 1
