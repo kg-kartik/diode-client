@@ -1,23 +1,39 @@
 import Button from "../components/Button";
 import Dropdown from "../components/Dropdown";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Image from "next/image";
 import leftImage from "../assets/NewProject.svg";
 import { Bounce, Fade, Slide } from "react-awesome-reveal";
 import styles from "../styles/CreateInstance.module.css";
 import InputBox from "../components/InputBox";
 import { useUser } from "../context/UserContext";
+
+
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { ToastContainer, toast } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 const CreateInstance = () => {
-    const { login } = useUser();
+    const { login, isLoginSuccessfull } = useUser();
     const [inputValue, setInputValue] = useState("");
 
     const handleInputValue = (inputValue) => {
         setInputValue(inputValue);
     };
 
+    if (isLoginSuccessfull) {
+        toast.success("Successfull Login!", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        })
+    }
     return (
         <>
             <Navbar />
@@ -47,12 +63,37 @@ const CreateInstance = () => {
                         </Fade>
                     </div>
                 </div>
+                <ToastContainer />
                 <div className="button-container">
                     <Button
                         size={"large"}
                         showArrow={false}
                         text="Login With Linode"
-                        cb={() => login(inputValue)}
+                        cb={() => {
+                            const result = login(inputValue);
+                            if (result) {
+                                toast.success("Successfull Login!", {
+                                    position: "top-right",
+                                    autoClose: 5000,
+                                    hideProgressBar: false,
+                                    closeOnClick: true,
+                                    pauseOnHover: true,
+                                    draggable: true,
+                                    progress: undefined,
+                                })
+                            }
+                            else {
+                                toast.error("Error", {
+                                    position: "top-right",
+                                    autoClose: 5000,
+                                    hideProgressBar: false,
+                                    closeOnClick: true,
+                                    pauseOnHover: true,
+                                    draggable: true,
+                                    progress: undefined,
+                                })
+                            }
+                        }}
                     />
                 </div>
             </div>
