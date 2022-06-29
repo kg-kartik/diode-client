@@ -34,6 +34,7 @@ const Landing = () => {
                 </div>
                 <Button text="Get Started" cb={handleStart} showArrow={false} size={"large"} />
             </div>
+            <Footer />
         </>
     );
 };

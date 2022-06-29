@@ -4,11 +4,12 @@
     position: fixed;
     left: 0;
     bottom: 0;
-    background-color: rgb(36, 38, 48);
+    background-color: rgba(36, 38, 48, 0.2);
     color: white;
-    font-size: 16px;
-
+    font-size: 20px;
     display: flex;
+    flex-direction: row;
     align-items: center;
-    justify-content: center;
+    gap: 5px;
+    padding-left: 47.5%;
 }

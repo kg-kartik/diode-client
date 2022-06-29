@@ -14,7 +14,7 @@ import { useRouter } from "next/router";
 
 const Deployment = () => {
     const [percent, setPercent] = useState(null);
-    const [status, setStatus] = useState("");
+    const [status, setStatus] = useState("lol");
     const router = useRouter();
 
     useEffect(() => {
@@ -67,8 +67,17 @@ const Deployment = () => {
                         <Fade cascade triggerOnce>
                             <h2 className={styles.heading}>Deploying your new cluster ✨</h2>
 
-                            <h4 style={{ marginTop: "10%" }}>{percent * 100}% complete</h4>
-                            <h3>{status}</h3>
+                            <h4 style={{ marginTop: "10%", fontSize: "24px", opacity: 0.8 }}>
+                                {percent * 100}% complete
+                            </h4>
+                            <h3 style={{ fontSize: "22px", opacity: 0.8 }}>{status}</h3>
+                            {status === "SUCCESS" ? (
+                                <p style={{ fontSize: "18px", opacity: 0.8 }}>
+                                    See your deployed app at <a> {router.query.ip}</a>
+                                </p>
+                            ) : (
+                                <></>
+                            )}
                             {/* <div className="progress-bar">
                                 <StepProgressBar />
                             </div> */}

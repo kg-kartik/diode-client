@@ -58,13 +58,13 @@ const Metrics = () => {
         datasets: [
             {
                 label: "netv6 out",
-                data: tableData?.data?.netv6.out,
+                data: tableData?.data?.netv6?.out,
                 borderColor: "rgb(255, 99, 132)",
                 backgroundColor: "rgba(255, 99, 132, 0.5)"
             },
             {
                 label: "netv6 in",
-                data: tableData?.data?.netv6.in,
+                data: tableData?.data?.netv6?.in,
                 borderColor: "rgba(14, 87, 196)",
                 backgroundColor: "rgba(14, 87, 196,0.5)"
             },
@@ -147,12 +147,6 @@ const Metrics = () => {
         []
     );
 
-    // if (Object.keys(tableData).length !== 0) {
-    //     if (Object.keys(tableData.data).length !== 4) {
-    //         return <h3>Data</h3>
-    //     }
-    // }
-
     console.log(Object.keys(tableData).length);
 
     return (
@@ -160,9 +154,9 @@ const Metrics = () => {
             <Navbar />
             {Object.keys(tableData).length === 0 ? (
                 <center>
-                    <h3 style={{ margin: "100px auto" }}>{"Loading data.."}</h3>
+                    <h3 style={{ marginTop: "200px" }}>{"Loading data.."}</h3>
                 </center>
-            ) : Object.keys(tableData).length !== 2 ? (
+            ) : Object.keys(tableData).length !== 1 ? (
                 <div>
                     <div className={styles.firstRow}>
                         <div className={styles.outerContainer}>
@@ -222,7 +216,9 @@ const Metrics = () => {
                     </div>
                 </div>
             ) : (
-                <h3 style={{ margin: "200px" }}>{"Data unavailable.."}</h3>
+                <center>
+                    <h3 style={{ marginTop: "200px" }}>{"Data unavailable.."}</h3>
+                </center>
             )}
         </>
     );

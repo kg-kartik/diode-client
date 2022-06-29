@@ -1,6 +1,9 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import styles from "../styles/Navbar.module.css";
+import Image from "next/image";
+import logo from "../assets/logo.svg";
+
 const Navbar = () => {
     const router = useRouter();
     const [user, setUser] = useState({});
@@ -35,7 +38,7 @@ const Navbar = () => {
         <nav className={styles.navbar}>
             <div className={styles.container}>
                 <div className={styles.heading} onClick={homeHandle}>
-                    DIODE
+                    <Image src={logo} width="72px" height="72px" />
                 </div>
                 <div className={styles.link1} onClick={loginHandle}>
                     {user ? "Logout" : "Login"}
