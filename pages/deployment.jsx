@@ -13,34 +13,40 @@ import axios from "axios";
 import { useRouter } from "next/router";
 
 const Deployment = () => {
-    const [percent, setPercent] = useState(0);
+    const [percent, setPercent] = useState(null);
     const [status, setStatus] = useState("");
     const router = useRouter();
 
     useEffect(() => {
         const getStatus = () => {
             if (!router.isReady) return;
-            axios
-                .get(
-                    `${process.env.NEXT_PUBLIC_FASTAPI_URL}/deploy/repo_status/${router.query.taskId}`
-                )
-                .then((res) => {
-                    if (
-                        res.data?.task_status === "SUCCESS" ||
-                        res.data?.task_status === "FAILURE"
-                    ) {
-                        setPercent(1);
-                    } else if (res.data?.task_status === "PENDING") {
-                        console.log("in pending");
-                        setPercent(0);
-                        setTimeout(getStatus, 10000);
-                    } else {
-                        console.log("in");
-                        setPercent(res.data?.task_result.process_percent);
-                        setTimeout(getStatus, 10000);
-                    }
-                    setStatus(res.data?.task_status);
-                });
+
+            if (router.query.taskId) {
+                axios
+                    .get(
+                        `${process.env.NEXT_PUBLIC_FASTAPI_URL}/deploy/repo_status/${router.query.taskId}`
+                    )
+                    .then((res) => {
+                        if (
+                            res.data?.task_status === "SUCCESS" ||
+                            res.data?.task_status === "FAILURE"
+                        ) {
+                            setPercent(1);
+                        } else if (res.data?.task_status === "PENDING") {
+                            console.log("in pending");
+                            setPercent(0);
+                            setTimeout(getStatus, 10000);
+                        } else {
+                            console.log("in");
+                            setPercent(res.data?.task_result.process_percent);
+                            setTimeout(getStatus, 10000);
+                        }
+                        setStatus(res.data?.task_status);
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    });
+            }
         };
 
         getStatus();
@@ -60,9 +66,8 @@ const Deployment = () => {
                     <div className={styles.right}>
                         <Fade cascade triggerOnce>
                             <h2 className={styles.heading}>Deploying your new cluster ✨</h2>
-                            <p className="subheading">Some filler text...</p>
 
-                            <h4>{percent * 100}% complete</h4>
+                            <h4 style={{ marginTop: "10%" }}>{percent * 100}% complete</h4>
                             <h3>{status}</h3>
                             {/* <div className="progress-bar">
                                 <StepProgressBar />

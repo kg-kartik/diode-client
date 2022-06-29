@@ -1,4 +1,4 @@
-export const tableData = {
+const tableData = {
     data: {
         io: {
             swap: [
@@ -3188,3 +3188,5 @@ export const tableData = {
     },
     title: "linode.com - linode36937698 (linode36937698) - day (5 min avg)"
 };
+
+console.log(Object.keys(tableData).length);

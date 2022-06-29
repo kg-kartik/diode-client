@@ -9,13 +9,15 @@
     height: 60px;
     display: flex;
     gap: 80px;
+    margin-right: 50px;
     align-items: center;
 }
 
 .heading {
     color: white;
     font-size: 24px;
-    width: 60%;
+    width: 80%;
+    cursor: pointer;
     margin-left: 30px;
     font-weight: 900;
 }

@@ -1,14 +1,14 @@
-import { createContext, useContext, useState, useEffect } from "react";
 import Axios from "axios";
+import { createContext, useContext, useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
 const UserContext = createContext({
     token: null,
     user: null,
-    login: () => { },
-    logout: () => { },
+    login: () => {},
+    logout: () => {},
     isAuth: false,
-    isLoginSuccessfull: null,
+    isLoginSuccessfull: null
 });
 
 export const useUser = () => useContext(UserContext);
@@ -18,8 +18,6 @@ export const UserProvider = ({ children }) => {
     const [token, setToken] = useState(null);
     const [isLogin, setisLogin] = useState(null);
     const router = useRouter();
-
-    console.log(user, "user");
 
     useEffect(() => {
         if (window) {
@@ -31,9 +29,10 @@ export const UserProvider = ({ children }) => {
             }
         }
     }, []);
+
     const login = (token) => {
-        const result = '';
-        Axios.post("http://172.104.207.139/user/signup", {
+        const result = "";
+        Axios.post(`${process.env.NEXT_PUBLIC_NODE_URL}/user/signup`, {
             personalaccesstoken: token
         })
             .then((res) => res.data.data)
@@ -69,7 +68,6 @@ export const UserProvider = ({ children }) => {
                 isAuth: !!user,
                 logout,
                 isLoginSuccessfull: isLogin
-
             }}
         >
             {children}
