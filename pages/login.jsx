@@ -55,6 +55,7 @@ const CreateInstance = () => {
                                     <p className="label">Token</p>
                                     {/* <Dropdown placeholder={"Select region"} options={options1} /> */}
                                     <InputBox
+                                        inputType={"password"}
                                         value={inputValue}
                                         placeholder={"Something cool...?"}
                                         cb={handleInputValue}

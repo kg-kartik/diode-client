@@ -56,10 +56,12 @@ const SelectRepo = () => {
     };
 
     const nextHandle = () => {
-        router.push({
-            pathname: "/environment",
-            query: { repo: dropdownValue, buildpack: selectedName }
-        });
+        if (selectedName != "") {
+            router.push({
+                pathname: "/environment",
+                query: { repo: dropdownValue, buildpack: selectedName }
+            });
+        }
     };
 
     return (
