@@ -1,22 +1,37 @@
 import Button from "../components/Button";
 import Dropdown from "../components/Dropdown";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Image from "next/image";
 import leftImage from "../assets/NewProject.svg";
 import { Bounce, Fade, Slide } from "react-awesome-reveal";
 import styles from "../styles/CreateInstance.module.css";
 import InputBox from "../components/InputBox";
 import { useUser } from "../context/UserContext";
+
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { ToastContainer, toast } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
+import { useRouter } from "next/router";
 
 const CreateInstance = () => {
-    const { login } = useUser();
+    const { login, isLoginSuccessfull } = useUser();
     const [inputValue, setInputValue] = useState("");
 
     const handleInputValue = (inputValue) => {
         setInputValue(inputValue);
     };
+
+    const router = useRouter();
+
+    useEffect(() => {
+        let user;
+        user = JSON.parse(localStorage.getItem("user"));
+        if (user) {
+            router.push("/dashboard");
+        }
+    }, []);
 
     return (
         <>
@@ -49,12 +64,27 @@ const CreateInstance = () => {
                         </Fade>
                     </div>
                 </div>
+                <ToastContainer />
                 <div className="button-container">
                     <Button
                         size={"large"}
                         showArrow={false}
                         text="Login With Linode"
-                        cb={() => login(inputValue)}
+                        cb={() => {
+                            const result = login(inputValue);
+
+                            if (result === false) {
+                                toast.error("Error", {
+                                    position: "top-right",
+                                    autoClose: 5000,
+                                    hideProgressBar: false,
+                                    closeOnClick: true,
+                                    pauseOnHover: true,
+                                    draggable: true,
+                                    progress: undefined
+                                });
+                            }
+                        }}
                     />
                 </div>
             </div>

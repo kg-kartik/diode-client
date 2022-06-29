@@ -3,9 +3,12 @@ import { IoLogoReact, IoLogoNodejs } from "react-icons/io5";
 import { DiDjango } from "react-icons/di";
 import { SiFastapi, SiFlask, SiRedis } from "react-icons/si";
 
-const Card = ({ instanceName, buildPackName }) => {
+const Card = ({ instanceName, buildPackName, cb }) => {
+    const clickHandler = () => {
+        cb();
+    };
     return (
-        <div className={styles.card}>
+        <div className={styles.card} onClick={clickHandler}>
             <div className={styles.heading}>{instanceName}</div>
             <div className={styles.buildPack}>
                 {buildPackName === "node" ? (

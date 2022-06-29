@@ -5,9 +5,10 @@ import { useRouter } from "next/router";
 const UserContext = createContext({
     token: null,
     user: null,
-    login: () => {},
-    logout: () => {},
-    isAuth: false
+    login: () => { },
+    logout: () => { },
+    isAuth: false,
+    isLoginSuccessfull: null,
 });
 
 export const useUser = () => useContext(UserContext);
@@ -15,6 +16,7 @@ export const useUser = () => useContext(UserContext);
 export const UserProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [token, setToken] = useState(null);
+    const [isLogin, setisLogin] = useState(null);
     const router = useRouter();
 
     console.log(user, "user");
@@ -30,6 +32,7 @@ export const UserProvider = ({ children }) => {
         }
     }, []);
     const login = (token) => {
+        const result = '';
         Axios.post("http://172.104.207.139/user/signup", {
             personalaccesstoken: token
         })
@@ -45,7 +48,9 @@ export const UserProvider = ({ children }) => {
             })
             .catch((err) => {
                 console.log(err);
+                result = false;
             });
+        return result;
     };
 
     const logout = () => {
@@ -62,7 +67,9 @@ export const UserProvider = ({ children }) => {
                 user,
                 login,
                 isAuth: !!user,
-                logout
+                logout,
+                isLoginSuccessfull: isLogin
+
             }}
         >
             {children}
