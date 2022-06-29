@@ -44,8 +44,7 @@ export const UserProvider = ({ children }) => {
                 setToken(res.token);
                 localStorage.setItem("token", res.token);
                 localStorage.setItem("user", JSON.stringify(newUser));
-                router.push("/createInstance");
-                result = true;
+                router.push("/selectRepo");
             })
             .catch((err) => {
                 console.log(err);

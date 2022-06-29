@@ -20,20 +20,28 @@ const Deployment = () => {
     useEffect(() => {
         const getStatus = () => {
             axios
-                .get(`http://172.105.40.93/deploy/repo_status/${router.query.taskId}`)
+                .get(
+                    `${process.env.NEXT_PUBLIC_FASTAPI_URL}/deploy/repo_status/${router.query.taskId}`
+                )
                 .then((res) => {
-                    if (res.data.task_status === "SUCCESS" || res.data.task_status === "FAILED") {
+                    if (
+                        res.data?.task_status === "SUCCESS" ||
+                        res.data?.task_status === "FAILURE"
+                    ) {
                         setPercent(1);
+                    } else if (res.data?.task_status === "PENDING") {
+                        setPercent(0);
+                        setTimeout(getStatus, 5000);
                     } else {
-                        setPercent(res.data.task_result.process.percent);
+                        setPercent(res.data?.task_result.process_percent);
                         setTimeout(getStatus, 5000);
                     }
-                    setStatus(res.data.task_status);
+                    setStatus(res.data?.task_status);
                 });
         };
 
         getStatus();
-    }, []);
+    }, [router.query]);
 
     return (
         <>
@@ -59,9 +67,9 @@ const Deployment = () => {
                         </Fade>
                     </div>
                 </div>
-                <div className="button-container">
+                {/* <div className="button-container">
                     <Button className="next" text="Next" redirectPage={"/lol"} />
-                </div>
+                </div> */}
             </div>
         </>
     );
