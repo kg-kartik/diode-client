@@ -46,9 +46,9 @@ const CreateInstance = () => {
 
                     <div className={styles.right}>
                         <Fade cascade triggerOnce>
-                            <h2 className={styles.heading}>Login With Linode ✨</h2>
+                            <h2 className={styles.heading}>Login With Linode 🟢</h2>
                             <p className="subheading">
-                                Get your personal access token and enter here
+                                Supercharge your application with Linode
                             </p>
                             <div className={styles.formContainer}>
                                 <div className={styles.form}>
@@ -56,7 +56,7 @@ const CreateInstance = () => {
                                     {/* <Dropdown placeholder={"Select region"} options={options1} /> */}
                                     <InputBox
                                         value={inputValue}
-                                        placeholder={"Something cool...?"}
+                                        placeholder={"We'll keep it a secret ;)"}
                                         cb={handleInputValue}
                                     />
                                 </div>
@@ -69,7 +69,7 @@ const CreateInstance = () => {
                     <Button
                         size={"large"}
                         showArrow={false}
-                        text="Login With Linode"
+                        text="Login with Linode"
                         cb={() => {
                             const result = login(inputValue);
 
