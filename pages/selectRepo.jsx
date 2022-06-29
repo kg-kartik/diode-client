@@ -40,7 +40,7 @@ const SelectRepo = () => {
             });
         } else {
             repoArr.push({
-                value: "Configure your gitHub app",
+                value: "Configure your github app",
                 label: "Configure your GitHub Account"
             });
             setRepos(repoArr);
